@@ -6,163 +6,125 @@
     font-family: Arial, sans-serif;
 }
 
-/* Matrix background styling using a repeating GIF */
+/* Matrix background styling */
 body {
     background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
     text-align: center;
-    padding: 20px;
+    padding: 0;
 }
 
-/* Semi-translucent black overlay block */
-.intro-container {
+/* Main container centered on the page */
+.projects-container {
     background: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
     color: white;
-    padding: 40px 20px;
+    padding: 20px;
     border-radius: 10px;
-    max-width: 600px;
     width: 90%;
-    margin: auto;
-}
-
-#intro-text {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.subtext {
-    font-size: 1.2em;
-    margin-bottom: 40px;
-}
-
-.highlight {
-    color: #00ff00;
-}
-
-.cta-button {
-    background-color: #00ff00;
-    color: black;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 20px;
-}
-
-.cta-button:hover {
-    background-color: #00cc00;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 85vh; /* Adjusted height for better centering */
 }
 
 /* Header styling */
 header {
-    text-align: center;
-    margin: 20px 0;
     color: #00ff00;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
 }
 
-/* Projects page container with black background at 90% opacity */
-.projects-container {
-    background: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
-    color: white;
-    padding: 40px;
-    border-radius: 10px;
-    max-width: 1000px;
-    width: 90%;
-    margin: 20px auto;
+/* Carousel container styling */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.projects-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+/* Carousel styling */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    width: 80%;
     gap: 15px;
-    padding: 20px;
+    justify-content: center;
 }
 
-.project-item {
+/* Each project item box with increased height */
+.carousel-item {
+    min-width: 30%; /* Show three items at a time */
     background-color: #333;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 8px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    height: 450px; /* Increased height to ensure "View More" button visibility */
 }
 
-.project-item h3 {
+/* Project title */
+.carousel-item h3 {
     color: #00ff00;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    text-transform: uppercase; /* Makes "Operation" names stand out */
+    font-size: 1.2em;
+    margin: 10px 0;
+    text-transform: uppercase;
     font-weight: bold;
 }
 
-.project-item p {
-    color: #ccc;
-    margin-bottom: 15px;
-}
-
+/* Project image with slight size increase */
 .project-screenshot {
     width: 100%;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    max-height: 200px; /* Limits image height for uniformity */
+    height: 220px; /* Increased height for larger image display */
     object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-/* Styled button for "View More" */
+/* Project description */
+.carousel-item p {
+    color: #ccc;
+    font-size: 0.9em;
+    margin: 10px 0;
+    text-align: center;
+    flex-grow: 1; /* Allows description to expand and create space for the button */
+}
+
+/* "View More" button for each project */
 .cta-button {
     background-color: #00ff00;
     color: black;
-    padding: 10px 20px;
+    padding: 8px 15px;
+    font-size: 0.9em;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
-    display: inline-block;
     margin-top: 10px;
+    display: inline-block;
 }
 
 .cta-button:hover {
     background-color: #00cc00;
 }
 
-/* Skills section */
-.skills-section {
-    padding: 20px;
-    color: #00ff00;
-}
-
-.skill-category h3 {
-    margin-bottom: 10px;
-}
-
-.skill-category ul {
-    list-style-type: none;
-}
-
-/* Contact form */
-.contact-section {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #00ff00;
-    border-radius: 5px;
-}
-
-button.cta-button {
-    background-color: #00ff00;
-    padding: 10px;
+/* Carousel navigation buttons */
+.carousel-button {
+    background-color: transparent;
     border: none;
+    color: #00ff00;
+    font-size: 2em;
     cursor: pointer;
 }
 
-button.cta-button:hover {
-    background-color: #00cc00;
+.carousel-button:hover {
+    color: #00cc00;
 }
