@@ -17,7 +17,51 @@ body {
     padding: 0;
 }
 
-/* Main container centered on the page */
+/* Centered container with black background for intro on home page */
+.intro-container {
+    background: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
+    color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Text and button styling for the intro container */
+#intro-text {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.subtext {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #ccc;
+}
+
+.highlight {
+    color: #00ff00;
+}
+
+/* General call-to-action button styling */
+.cta-button {
+    background-color: #00ff00;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.cta-button:hover {
+    background-color: #00cc00;
+}
+
+/* Container for projects section */
 .projects-container {
     background: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
     color: white;
@@ -100,7 +144,7 @@ header {
 }
 
 /* "View More" button for each project */
-.cta-button {
+.cta-button.project-button {
     background-color: #00ff00;
     color: black;
     padding: 8px 15px;
@@ -112,7 +156,7 @@ header {
     display: inline-block;
 }
 
-.cta-button:hover {
+.cta-button.project-button:hover {
     background-color: #00cc00;
 }
 
