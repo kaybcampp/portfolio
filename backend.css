@@ -1,0 +1,140 @@
+/* Matrix background styling */
+body {
+    background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 0;
+}
+/* Main container for each project page */
+.project-container {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+/* Header styling for a smaller title at the top */
+.project-container header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.project-container h1 {
+    color: #00ff00;
+    font-size: 1.5em; /* Smaller title */
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Centered Image Gallery and Details in two columns */
+.project-content {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 20px;
+}
+
+/* Left column: Details */
+.details {
+    flex: 1;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.details h2 {
+    color: #00ff00;
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+
+.details p {
+    color: #ccc;
+    font-size: 0.95em;
+    margin-top: 5px;
+}
+
+/* Right column: Gallery */
+.gallery {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-display img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Tags container for positioning code tags and start date under main image */
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Start date styling */
+.start-date {
+    color: #ccc;
+    font-size: 0.85em;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+/* Code tags styling */
+.code-tags {
+    display: flex;
+    gap: 8px;
+}
+
+/* Styling for code language tags */
+.code-tags .tag {
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    color: white;
+}
+
+/* Color-coded tags for languages */
+.tag.html { background-color: #e34c26; } /* HTML - orange */
+.tag.css { background-color: #264de4; } /* CSS - blue */
+.tag.javascript { background-color: #f0db4f; color: black; } /* JavaScript - yellow */
+.tag.python { background-color: #306998; } /* Python - blue */
+.tag.nodejs { background-color: #68a063; } /* Node.js - green */
+
+/* Zoom box styling */
+.zoom-box {
+    position: absolute;
+    display: none; /* Hidden by default */
+    width: 300px; /* Size of the zoom box */
+    height: 300px;
+    border: 2px solid #00ff00;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+/* Styling for the zoomed image inside the zoom box */
+.zoom-box img {
+    position: absolute;
+    width: 400%; /* Set to 400% for magnification */
+    height: auto;
+    max-width: none; /* Prevent scaling within container */
+}
