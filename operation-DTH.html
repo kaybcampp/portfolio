@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operation B C - Project Details</title>
+    <title>Operation DTH - Project Details</title>
     <link rel="stylesheet" href="backend.css">
     <style>
         /* Greyscale matrix background */
@@ -71,22 +71,24 @@
             padding: 20px;
         }
 
-        .gallery-display img {
+        .gallery-display img,
+        .gallery-display video {
             width: 100%;
             max-width: 600px;
             max-height: 60vh;
             object-fit: contain;
             border-radius: 10px;
             cursor: pointer;
-            background-color: rgba(0, 255, 0, 0.3);
-            border: 2px solid rgba(0, 255, 0, 0.3);
+            background-color: rgba(0, 255, 0, 0.3); /* Initial green highlight */
+            border: 2px solid rgba(0, 255, 0, 0.3); /* Green border */
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        .gallery-display img:hover {
-            background-color: rgba(0, 255, 0, 0.5);
-            border-color: rgba(0, 255, 0, 0.5);
-            transform: scale(1.02);
+        .gallery-display img:hover,
+        .gallery-display video:hover {
+            background-color: rgba(0, 255, 0, 0.5); /* Darker green highlight on hover */
+            border-color: rgba(0, 255, 0, 0.5); /* Darker green border on hover */
+            transform: scale(1.02); /* Slight zoom effect on hover */
         }
 
         /* Thumbnail images with green highlight effect */
@@ -107,7 +109,36 @@
             transform: scale(1.05);
         }
 
-        /* Information icon with constant glow effect, styled as a circle */
+        /* Video thumbnail with play button overlay */
+        .video-thumbnail {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #00ff00;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        /* Information icon with constant glow effect, styled as a 20px circle */
         .info-icon {
             position: absolute;
             top: 155px;
@@ -135,7 +166,7 @@
             }
         }
 
-        /* Fullscreen overlay with optimized spacing */
+        /* Overlay for Problem, Solution, and What's Next */
         .overlay {
             display: none;
             position: absolute;
@@ -145,29 +176,29 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
             color: white;
-            padding: 30px 50px;
+            padding: 40px;
             border-radius: 15px;
             overflow-y: auto;
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            text-align: left;
         }
 
         .overlay h2 {
             color: #00ff00;
+            margin-top: 15px;
             font-size: 1.8em;
-            margin: 15px 0;
+            text-align: center;
         }
 
         .overlay p {
             color: #ccc;
             font-size: 1.1em;
             line-height: 1.6;
+            margin: 15px 0;
             max-width: 90%;
-            margin: 10px 0;
             text-align: justify;
         }
 
@@ -194,24 +225,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 10px;
-        }
-
-        /* Back to Projects button styling */
-        .back-to-projects-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #00ff00;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .back-to-projects-btn:hover {
-            background-color: #00cc00;
+            color: white;
         }
     </style>
 </head>
@@ -226,38 +240,50 @@
         </div>
 
         <header>
-            <h1>Operation B C</h1>
+            <h1>Operation DTH (DracosTrapHouse)</h1>
         </header>
 
         <!-- Image gallery section -->
         <div class="gallery">
             <!-- Thumbnails stacked vertically on the left -->
             <div class="gallery-thumbnails">
-                <img src="images/productsTN.png" alt="Product Thumbnail 1" onclick="changeImage('images/productsTN.png')">
-                <img src="images/orderTN.png" alt="Product Thumbnail 2" onclick="changeImage('images/orderTN.png')">
-                <img src="images/cartTN.png" alt="Product Thumbnail 3" onclick="changeImage('images/cartTN.png')">
+                <img src="images/homeDTH.png" alt="Home Page Thumbnail" onclick="changeImage('images/homeDTH.png')">
+                <img src="images/aboutDTH.png" alt="About Us Page Thumbnail" onclick="changeImage('images/aboutDTH.png')">
+                <img src="images/contactusDTH.png" alt="Contact Us Page Thumbnail" onclick="changeImage('images/contactusDTH.png')">
+
+                <!-- Video thumbnail with play button overlay -->
+                <div class="video-thumbnail" onclick="changeToVideo()">
+                    <img src="images/mainLogo.png" alt="Live Demo Video Thumbnail">
+                    <span class="play-button">&#9658;</span>
+                </div>
             </div>
 
-            <!-- Main display area for images with info icon and overlay -->
+            <!-- Main display area for images and video with info icon and overlay -->
             <div class="gallery-display">
-                <a id="imageLink" href="images/productsTN.png" target="_blank">
-                    <img id="mainImage" src="images/productsTN.png" alt="Main Display Image">
+                <a id="imageLink" href="images/homeDTH.png" target="_blank">
+                    <img id="mainImage" src="images/homeDTH.png" alt="Main Display Image">
                 </a>
+
+                <!-- Video element (hidden by default) -->
+                <video id="mainVideo" controls style="display: none;">
+                    <source src="images/siteVideoDTH.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
 
                 <!-- Information icon -->
                 <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
 
-                <!-- Optimized overlay layout -->
+                <!-- Full overlay for Problem, Solution, and What's Next -->
                 <div class="overlay" id="infoOverlay">
                     <span class="close-overlay" onclick="toggleOverlay()">✖</span>
                     <h2>Problem</h2>
-                    <p>The client, a small business owner, needed a fully functional marketplace that could be accessed via Telegram, with an intuitive shopping experience for customers. The bot required a comprehensive menu, organized product categories, add-to-cart functionality, and payment integration.</p>
+                    <p>The client needed a custom e-commerce website for DracosTrapHouse, designed to showcase products, portfolios, and project updates with a unique, tech-savvy aesthetic. The site required user engagement features, smooth navigation, and integration with social platforms.</p>
 
                     <h2>Solution</h2>
-                    <p>To meet these needs, I developed a Telegram bot using Python and the Telegram API. The bot features a welcoming interface with a message guiding users through its functionality. Products are categorized for easy navigation, with detailed descriptions and prices displayed. The add-to-cart function accurately updates item quantities and the total balance, creating a seamless shopping experience.</p>
+                    <p>I built a sleek, dark-themed website with a Matrix-inspired aesthetic using HTML, CSS, and JavaScript. The site includes an animated intro, structured product display, dedicated portfolio section, and social media integrations. I implemented responsive design for seamless display across devices, ensuring an immersive experience.</p>
 
                     <h2>What's Next</h2>
-                    <p>The project awaits the client's company logos and their preferred payment integration method to finalize the shopping and checkout experience.</p>
+                    <p>Upcoming updates include additional product features, refined animations, and real-time analytics for user engagement tracking to enhance usability further.</p>
                 </div>
 
                 <!-- Instruction text below the image -->
@@ -265,10 +291,10 @@
 
                 <!-- Code tags and start date under the main display area -->
                 <div class="tags-container">
-                    <span class="start-date">Started: March 2023</span>
+                    <span class="start-date">Started: January 2024</span>
                     <div class="code-tags">
-                        <span class="tag python">Python</span>
-                        <span class="tag telegram">Telegram API</span>
+                        <span class="tag html">HTML</span>
+                        <span class="tag css">CSS</span>
                         <span class="tag javascript">JavaScript</span>
                     </div>
                 </div>
@@ -289,14 +315,24 @@
             overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
         }
 
-        // Function to replace the main image with the clicked thumbnail and set enlarged link
+        // Function to replace the main image with the clicked thumbnail
         function changeImage(imageSrc) {
             const mainImage = document.getElementById('mainImage');
             const imageLink = document.getElementById('imageLink');
             
             mainImage.src = imageSrc;
             imageLink.href = imageSrc;
+
             mainImage.style.display = 'block';
+            document.getElementById('mainVideo').style.display = 'none';
+        }
+
+        // Function to display the video in the main display area
+        function changeToVideo() {
+            document.getElementById('mainImage').style.display = 'none';
+            const mainVideo = document.getElementById('mainVideo');
+            mainVideo.style.display = 'block';
+            mainVideo.play();
         }
     </script>
 </body>
