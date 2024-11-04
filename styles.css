@@ -20,17 +20,21 @@
     z-index: 1000;
 }
 
-.menu-item {
-    color: #00ff00;
+.menu-item, .nav-button {
+    background-color: #00ff00;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 5px;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: bold;
-    font-size: 1.1em;
-    transition: color 0.3s;
+    font-size: 1em;
+    margin: 0 10px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.menu-item:hover {
-    color: #00cc00;
+.menu-item:hover, .nav-button:hover {
+    background-color: #00cc00;
+    color: white;
 }
 
 /* Hide "Back to Projects" button on index and main projects pages */
@@ -40,23 +44,37 @@
 
 /* Content container to avoid menu overlap */
 .content {
-    padding-top: 60px; /* Adjust based on menu height */
+    padding-top: 60px;
 }
 
-/* Matrix background styling */
+/* General body setup */
 body {
-    background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     text-align: center;
     padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Matrix background styling with greyscale applied only to the background */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
+    filter: grayscale(100%);
+    z-index: -1;
 }
 
 /* Centered container with black background for intro on home page */
 .intro-container {
-    background: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
+    background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 40px 20px;
     border-radius: 10px;
@@ -100,7 +118,7 @@ body {
 
 /* Container for projects section */
 .projects-container {
-    background: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
+    background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -111,7 +129,6 @@ body {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    height: 85vh; /* Adjusted height for better centering */
 }
 
 /* Header styling */
@@ -139,58 +156,65 @@ header {
     justify-content: center;
 }
 
-/* Each project item box with increased height */
+/* Each project item box with increased height and proper alignment */
 .carousel-item {
-    min-width: 30%; /* Show three items at a time */
+    flex: 0 0 48%;
     background-color: #333;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
-    height: 450px; /* Increased height to ensure "View More" button visibility */
+    height: 500px;
+    max-width: 500px;
+    position: relative;
+}
+
+/* Project image with increased size */
+.project-screenshot {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 /* Project title */
 .carousel-item h3 {
     color: #00ff00;
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin: 10px 0;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-/* Project image with slight size increase */
-.project-screenshot {
-    width: 100%;
-    height: 220px; /* Increased height for larger image display */
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-/* Project description */
+/* Project description with max height and overflow */
 .carousel-item p {
     color: #ccc;
-    font-size: 0.9em;
+    font-size: 1em;
     margin: 10px 0;
     text-align: center;
-    flex-grow: 1; /* Allows description to expand and create space for the button */
+    max-height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
 }
 
-/* "View More" button for each project */
+/* "View More" button for each project, positioned within container */
 .cta-button.project-button {
     background-color: #00ff00;
     color: black;
-    padding: 8px 15px;
-    font-size: 0.9em;
+    padding: 10px 15px;
+    font-size: 1em;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
-    margin-top: 10px;
     display: inline-block;
+    position: absolute;
+    bottom: 20px;
 }
 
 .cta-button.project-button:hover {
@@ -208,4 +232,88 @@ header {
 
 .carousel-button:hover {
     color: #00cc00;
+}
+
+/* Centered container for contact section */
+.contact-container {
+    max-width: 700px;
+    width: 90%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ccc;
+    z-index: 1000;
+}
+
+/* Add padding specifically on the contact page */
+.contact-spacing {
+    margin-bottom: 30px;
+}
+
+/* Timeline styling */
+.timeline {
+    list-style-type: none;
+    padding: 0;
+    color: #00ff00;
+}
+
+.timeline li {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Contact Links */
+.contact-links {
+    margin-top: 20px;
+}
+
+.contact-link {
+    color: #00ff00;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.contact-link:hover {
+    color: #00cc00;
+}
+
+/* Form Section */
+.contact-form-section {
+    margin-top: 20px;
+}
+
+.contact-form-section form input,
+.contact-form-section form textarea {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.contact-form-section button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #00ff00;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form-section button:hover {
+    background-color: #00cc00;
 }

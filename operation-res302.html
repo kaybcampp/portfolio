@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Res302 - Project Details</title>
+    <link rel="stylesheet" href="backend.css">
+    <style>
+        /* Greyscale matrix background */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
+            filter: grayscale(100%);
+            z-index: -1;
+        }
+
+        /* Centered project container */
+        .project-container {
+            max-width: 700px;
+            width: 90%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Navigation buttons styling */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .nav-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Center the gallery display and maximize image size */
+        .gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Main image display with green hover outline */
+        .gallery-display img,
+        .gallery-display video {
+            width: 100%;
+            max-width: 600px;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            background-color: rgba(0, 255, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gallery-display img:hover,
+        .gallery-display video:hover {
+            background-color: rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Thumbnail images with green outline and hover effect */
+        .gallery-thumbnails img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        .gallery-thumbnails img:hover {
+            background-color: rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Video thumbnail styling with play button overlay */
+        .video-thumbnail {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail:hover {
+            background-color: rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Play button styling on video thumbnail */
+        .video-thumbnail .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #00ff00;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Information icon */
+        .info-icon {
+            position: absolute;
+            top: 155px;
+            right: 10px;
+            font-size: 24px;
+            color: #00ff00;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        /* Overlay for Problem, Solution, and What's Next */
+        .overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .overlay h2 {
+            color: #00ff00;
+            margin-top: 15px;
+        }
+
+        .overlay p {
+            color: #ccc;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* Close button inside overlay */
+        .close-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #00ff00;
+            cursor: pointer;
+        }
+
+        /* Green text for click instruction */
+        .click-instruction {
+            color: #00ff00;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Tags and start date below instruction text */
+        .tags-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <!-- Navigation buttons inside the black container -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="skills.html" class="nav-button">Skills</a>
+            <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+
+        <header>
+            <h1>Operation Res302</h1>
+        </header>
+
+        <!-- Image gallery section -->
+        <div class="gallery">
+            <!-- Thumbnails stacked vertically on the left -->
+            <div class="gallery-thumbnails">
+                <img src="images/res302Home.png" alt="Thumbnail 1" onclick="changeImage('images/res302Home.png')">
+                <img src="images/res302Aboutus.png" alt="Thumbnail 2" onclick="changeImage('images/res302Aboutus.png')">
+
+                <!-- Video thumbnail with play button overlay -->
+                <div class="video-thumbnail" onclick="changeToVideo()">
+                    <img src="images/302logo1.png" alt="Live Demo Video Thumbnail">
+                    <span class="play-button">&#9658;</span>
+                </div>
+            </div>
+
+            <!-- Main display area for images and video with info icon and overlay -->
+            <div class="gallery-display">
+                <a id="imageLink" href="images/res302Home.png" target="_blank">
+                    <img id="mainImage" src="images/res302Home.png" alt="Main Display Image">
+                </a>
+
+                <!-- Video element (hidden by default) -->
+                <video id="mainVideo" controls style="display: none;">
+                    <source src="images/res302vid1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Information icon -->
+                <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
+
+                <!-- Overlay for Problem, Solution, and What's Next -->
+                <div class="overlay" id="infoOverlay">
+                    <span class="close-overlay" onclick="toggleOverlay()">✖</span>
+                    <h2>Problem</h2>
+                    <p>The client needed a professional real estate website with a luxury feel, designed to showcase properties, customer reviews, and provide easy contact options. The site required smooth navigation, an exclusive aesthetic, and high functionality for mobile users.</p>
+
+                    <h2>Solution</h2>
+                    <p>I developed a high-end, responsive website using HTML, CSS, and JavaScript, featuring a sleek black and gold theme. The site includes an interactive property gallery, reviews section, and integrated social media links. An emphasis was placed on user-friendly design and ease of contact, enhancing the overall luxury experience.</p>
+
+                    <h2>What's Next</h2>
+                    <p>Future updates include integration with real estate listing services, more advanced filtering options for properties, and interactive elements to improve user engagement.</p>
+                </div>
+
+                <!-- Instruction text below the image -->
+                <p class="click-instruction">Click on the image for an enlarged view.</p>
+
+                <!-- Code tags and start date under the main display area -->
+                <div class="tags-container">
+                    <span class="start-date">Started: September 2024</span>
+                    <div class="code-tags">
+                        <span class="tag html">HTML</span>
+                        <span class="tag css">CSS</span>
+                        <span class="tag javascript">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle the visibility of the overlay
+        function toggleOverlay() {
+            const overlay = document.getElementById('infoOverlay');
+            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'block' : 'none';
+        }
+
+        // Function to replace the main image with the clicked thumbnail
+        function changeImage(imageSrc) {
+            const mainImage = document.getElementById('mainImage');
+            const imageLink = document.getElementById('imageLink');
+            
+            mainImage.src = imageSrc;
+            imageLink.href = imageSrc;
+
+            mainImage.style.display = 'block';
+            document.getElementById('mainVideo').style.display = 'none';
+        }
+
+        // Function to display the video in the main display area
+        function changeToVideo() {
+            document.getElementById('mainImage').style.display = 'none';
+            document.getElementById('mainVideo').style.display = 'block';
+            document.getElementById('mainVideo').play();
+        }
+    </script>
+</body>
+</html>

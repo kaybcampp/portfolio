@@ -5,30 +5,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operation DTH - Project Details</title>
     <link rel="stylesheet" href="backend.css">
+    <style>
+        /* Greyscale matrix background */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
+            filter: grayscale(100%);
+            z-index: -1;
+        }
+
+        /* Centered project container */
+        .project-container {
+            max-width: 700px;
+            width: 90%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Navigation buttons styling */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .nav-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Center the gallery display and maximize image size with green outline and hover effect */
+        .gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gallery-display img,
+        .gallery-display video {
+            width: 100%;
+            max-width: 600px;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgba(0, 255, 0, 0.3); /* Initial green highlight */
+            border: 2px solid rgba(0, 255, 0, 0.3); /* Green border */
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gallery-display img:hover,
+        .gallery-display video:hover {
+            background-color: rgba(0, 255, 0, 0.5); /* Darker green highlight on hover */
+            border-color: rgba(0, 255, 0, 0.5); /* Darker green border on hover */
+            transform: scale(1.02); /* Slight zoom effect on hover */
+        }
+
+        /* Thumbnail images with green highlight effect */
+        .gallery-thumbnails img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(0, 255, 0, 0.3);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        .gallery-thumbnails img:hover {
+            background-color: rgba(0, 255, 0, 0.5);
+            border-color: rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Video thumbnail with play button overlay */
+        .video-thumbnail {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #00ff00;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        /* Information icon */
+        .info-icon {
+            position: absolute;
+            top: 155px;
+            right: 10px;
+            font-size: 24px;
+            color: #00ff00;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        /* Overlay for Problem, Solution, and What's Next */
+        .overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .overlay h2 {
+            color: #00ff00;
+            margin-top: 15px;
+        }
+
+        .overlay p {
+            color: #ccc;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* Close button inside overlay */
+        .close-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #00ff00;
+            cursor: pointer;
+        }
+
+        /* Green text for click instruction */
+        .click-instruction {
+            color: #00ff00;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Tags and start date below instruction text */
+        .tags-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-       <!-- Menu Bar -->
-       <nav class="menu-bar">
-        <a href="index.html" class="menu-item">Home</a>
-        <a href="projects.html" class="menu-item">Projects</a>
-        
-        <!-- Back to Projects button (only on project-specific pages) -->
-        <a href="projects.html" class="menu-item back-to-projects">Back to Projects</a>
-    </nav>
-    
     <div class="project-container">
+        <!-- Navigation buttons inside the black container -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="skills.html" class="nav-button">Skills</a>
+            <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+
         <header>
             <h1>Operation DTH (DracosTrapHouse)</h1>
         </header>
-        
-        <!-- Image gallery section with side-by-side layout -->
+
+        <!-- Image gallery section -->
         <div class="gallery">
             <!-- Thumbnails stacked vertically on the left -->
             <div class="gallery-thumbnails">
                 <img src="images/homeDTH.png" alt="Home Page Thumbnail" onclick="changeImage('images/homeDTH.png')">
                 <img src="images/aboutDTH.png" alt="About Us Page Thumbnail" onclick="changeImage('images/aboutDTH.png')">
                 <img src="images/contactusDTH.png" alt="Contact Us Page Thumbnail" onclick="changeImage('images/contactusDTH.png')">
-                
+
                 <!-- Video thumbnail with play button overlay -->
                 <div class="video-thumbnail" onclick="changeToVideo()">
                     <img src="images/mainLogo.png" alt="Live Demo Video Thumbnail">
@@ -36,21 +233,37 @@
                 </div>
             </div>
 
-            <!-- Main display area for images and video -->
+            <!-- Main display area for images and video with info icon and overlay -->
             <div class="gallery-display">
-                <img id="mainImage" src="images/homeDTH.png" alt="Main Display Image" style="width: 100%; max-height: 350px; border-radius: 10px;" onmousemove="zoom(event)" onmouseleave="hideZoom()">
-                
-                <!-- Zoom box for magnification -->
-                <div id="zoomBox" class="zoom-box">
-                    <img id="zoomImage" src="images/homeDTH.png" alt="Zoomed Image">
-                </div>
-                
+                <a id="imageLink" href="images/homeDTH.png" target="_blank">
+                    <img id="mainImage" src="images/homeDTH.png" alt="Main Display Image">
+                </a>
+
                 <!-- Video element (hidden by default) -->
-                <video id="mainVideo" controls style="display: none; width: 100%; max-height: 350px; border-radius: 10px;">
+                <video id="mainVideo" controls style="display: none;">
                     <source src="images/siteVideoDTH.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
+                <!-- Information icon -->
+                <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
+
+                <!-- Overlay for Problem, Solution, and What's Next -->
+                <div class="overlay" id="infoOverlay">
+                    <span class="close-overlay" onclick="toggleOverlay()">✖</span>
+                    <h2>Problem</h2>
+                    <p>The client needed a custom e-commerce website for DracosTrapHouse, designed to showcase products, portfolios, and project updates with a unique, tech-savvy aesthetic. The site required user engagement features, smooth navigation, and integration with social platforms.</p>
+
+                    <h2>Solution</h2>
+                    <p>I built a sleek, dark-themed website with a Matrix-inspired aesthetic using HTML, CSS, and JavaScript. The site includes an animated intro, structured product display, dedicated portfolio section, and social media integrations. I implemented responsive design for seamless display across devices, ensuring an immersive experience.</p>
+
+                    <h2>What's Next</h2>
+                    <p>Upcoming updates include additional product features, refined animations, and real-time analytics for user engagement tracking to enhance usability further.</p>
+                </div>
+
+                <!-- Instruction text below the image -->
+                <p class="click-instruction">Click on the image for an enlarged view.</p>
+
                 <!-- Code tags and start date under the main display area -->
                 <div class="tags-container">
                     <span class="start-date">Started: January 2024</span>
@@ -63,57 +276,35 @@
             </div>
         </div>
 
-        <!-- Problem, Solution, and What's Next sections -->
-        <section class="details">
-            <h2>Problem</h2>
-            <p>The client needed a custom e-commerce website for DracosTrapHouse, designed to showcase products, portfolios, and project updates with a unique, tech-savvy aesthetic. The site required user engagement features, smooth navigation, and integration with social platforms.</p>
-            
-            <h2>Solution</h2>
-            <p>To meet these needs, I built a sleek, dark-themed website with a Matrix-inspired aesthetic using HTML, CSS, and JavaScript. The site includes an animated introduction, a structured product display, a dedicated portfolio section, and social media integrations. I utilized responsive design for seamless display across devices, ensuring an immersive and modern experience.</p>
-            
-            <h2>What's Next</h2>
-            <p>The next steps include implementing additional product updates, refining interactive animations, and incorporating real-time analytics to track user engagement and further enhance the website's usability.</p>
-        </section>
+        <!-- Centered Back to Projects button -->
+        <a href="projects.html" class="back-to-projects-btn">Back to Projects</a>
     </div>
-    
+
     <script>
+        // Toggle the visibility of the overlay
+        function toggleOverlay() {
+            const overlay = document.getElementById('infoOverlay');
+            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'block' : 'none';
+        }
+
         // Function to replace the main image with the clicked thumbnail
         function changeImage(imageSrc) {
-            document.getElementById('mainImage').src = imageSrc;
-            document.getElementById('zoomImage').src = imageSrc;
-            document.getElementById('mainImage').style.display = 'block';
+            const mainImage = document.getElementById('mainImage');
+            const imageLink = document.getElementById('imageLink');
+            
+            mainImage.src = imageSrc;
+            imageLink.href = imageSrc;
+
+            mainImage.style.display = 'block';
             document.getElementById('mainVideo').style.display = 'none';
         }
-        
+
         // Function to display the video in the main display area
         function changeToVideo() {
             document.getElementById('mainImage').style.display = 'none';
-            document.getElementById('mainVideo').style.display = 'block';
-            document.getElementById('mainVideo').play();
-            document.getElementById('zoomBox').style.display = 'none'; // Hide zoom box when video is playing
-        }
-        
-        // Zoom functionality
-        function zoom(event) {
-            const zoomBox = document.getElementById('zoomBox');
-            const zoomImage = document.getElementById('zoomImage');
-            const mainImage = document.getElementById('mainImage');
-            const rect = mainImage.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            zoomBox.style.display = 'block';
-            zoomBox.style.left = `${event.pageX + 10}px`;
-            zoomBox.style.top = `${event.pageY + 10}px`;
-
-            const zoomX = (x / rect.width) * 100;
-            const zoomY = (y / rect.height) * 100;
-
-            zoomImage.style.transform = `translate(-${zoomX}%, -${zoomY}%) scale(3)`;
-        }
-
-        function hideZoom() {
-            document.getElementById('zoomBox').style.display = 'none';
+            const mainVideo = document.getElementById('mainVideo');
+            mainVideo.style.display = 'block';
+            mainVideo.play();
         }
     </script>
 </body>

@@ -3,30 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Your Name</title>
+    <title>Contact - Kayb Campbell</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Menu Bar -->
-    <nav class="menu-bar">
-        <a href="index.html" class="menu-item">Home</a>
-        <a href="projects.html" class="menu-item">Projects</a>
+    <!-- Centered container with menu and about info -->
+    <div class="contact-container">
+        <!-- Navigation buttons inside the black container -->
+        <div class="nav-buttons contact-spacing">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="skills.html" class="nav-button">Skills</a>
+            <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+
+        <!-- Page Header -->
+        <header>
+            <h2>Contact Me</h2>
+        </header>
         
-        <!-- Back to Projects button (only on project-specific pages) -->
-        <a href="projects.html" class="menu-item back-to-projects">Back to Projects</a>
-    </nav>
-    
-    <header>
-        <h2>Contact Me</h2>
-    </header>
-    <section class="contact-section">
-        <p>Get in touch with me through the following:</p>
-        <form action="submit-form.php" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="cta-button">Send Message</button>
-        </form>
-    </section>
+        <!-- About Me Section -->
+        <section class="about-me-section">
+            <h3>About Me</h3>
+            <p>I am a young, passionate coder exploring the art and science of software development. Here is a brief timeline of my journey:</p>
+            <ul class="timeline">
+                <li><strong>2021:</strong> Started learning HTML, CSS, and JavaScript.</li>
+                <li><strong>2022:</strong> Built my first full-stack web application.</li>
+                <li><strong>2023:</strong> Expanded into frameworks like React and Node.js.</li>
+                <li><strong>2024:</strong> Developed a series of unique, interactive projects, showcasing my skills.</li>
+            </ul>
+        </section>
+
+        <!-- Contact Links -->
+        <section class="contact-links">
+            <h3>Connect with Me</h3>
+            <p>
+                <a href="https://github.com/kaybcampp" target="_blank" class="contact-link">GitHub</a> |
+                <a href="mailto:campbellkaybriana@yahoo.com" class="contact-link">Email Me</a>
+            </p>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact-form-section">
+            <p>Or send me a direct message here:</p>
+            <form action="submit-form.php" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </section>
+    </div>
 </body>
 </html>

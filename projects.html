@@ -5,33 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operations - Kayb Campbell</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Centered navigation buttons container styling */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Styling for the projects container */
+        .projects-container {
+            max-width: 800px;
+            width: 90%;
+            margin: auto;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        header h2 {
+            color: #00ff00;
+        }
+
+        /* Carousel navigation buttons */
+        .carousel-button {
+            background: none;
+            border: none;
+            font-size: 2em;
+            color: #00ff00;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .carousel-button:hover {
+            color: #00cc00;
+        }
+
+        /* Carousel and carousel item styling */
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            gap: 15px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        /* Each project item box with increased height and width */
+        .carousel-item {
+            flex: 0 0 45%; /* Adjust width to show two items at a time */
+            background-color: #333;
+            padding: 20px; /* Increased padding for more space */
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            height: 450px; /* Increased height to ensure "View More" button visibility */
+        }
+
+        /* Project image with increased size */
+        .project-screenshot {
+            width: 100%;
+            height: 250px; /* Increased height for larger image display */
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Project description */
+        .carousel-item p {
+            color: #ccc;
+            font-size: 1em; /* Increased font size for better readability */
+            margin: 10px 0;
+            text-align: center;
+            flex-grow: 1; /* Allows description to expand and create space for the button */
+        }
+
+        /* "View More" button for each project */
+        .cta-button.project-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 10px 15px; /* Increased padding for a better button size */
+            font-size: 1em; /* Increased font size for readability */
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .cta-button.project-button:hover {
+            background-color: #00cc00;
+        }
+    </style>
 </head>
 <body>
-       <!-- Menu Bar -->
-       <nav class="menu-bar">
-        <a href="index.html" class="menu-item">Home</a>
-        <a href="projects.html" class="menu-item">Projects</a>
-        
-        <!-- Back to Projects button (only on project-specific pages) -->
-        <a href="projects.html" class="menu-item back-to-projects">Back to Projects</a>
-    </nav>
-    
+    <!-- Main black container for the Projects section -->
     <div class="projects-container">
+        <!-- Navigation buttons inside the black container -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="skills.html" class="nav-button">Skills</a>
+            <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+
         <header>
             <h2>Operations</h2>
         </header>
+
+        <!-- Carousel container for project items -->
         <div class="carousel-container">
             <button id="leftArrow" class="carousel-button" onclick="showPrevious()">&#9664;</button>
             <div class="carousel">
                 <div class="carousel-item">
                     <h3>Operation Stone</h3>
                     <img src="images/crmDataPull.png" alt="Screenshot of Operation Stone" class="project-screenshot">
-                    <p>A secure and scalable platform for data management, designed to handle high volumes while maintaining integrity and accessibility.</p>
+                    <p>A secure and scalable platform for data management, designed to handle high volumes while maintaining accessibility.</p>
                     <a href="operation-stone.html" class="cta-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation B C</h3>
-                    <img src="assets/images/operation-bc-screenshot.jpg" alt="Screenshot of Operation B C" class="project-screenshot">
+                    <img src="images/productsTN.png" alt="Screenshot of Operation B C" class="project-screenshot">
                     <p>An ecommerce integration tool that simplifies product listing, inventory tracking, and order processing for small businesses.</p>
                     <a href="operation-bc.html" class="cta-button">View More</a>
                 </div>
@@ -44,19 +158,19 @@
                 <div class="carousel-item">
                     <h3>Operation DTH</h3>
                     <img src="images/mainLogo.png" alt="Screenshot of Operation DTH" class="project-screenshot">
-                    <p>Ecommerce website, designed as a hub for showcasing products, portfolios, and project updates with a unique, geeky aesthetic.</p>
+                    <p>Ecommerce website, designed for showcasing products, portfolios, and project updates with a unique aesthetic.</p>
                     <a href="operation-DTH.html" class="cta-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation Res302</h3>
                     <img src="images/302logo1.png" alt="Screenshot of Operation Res302" class="project-screenshot">
-                    <p>A real estate website solution, designed to showcase property listings, agent information, and client testimonials in a sleek, modern format.</p>
+                    <p>A realestate site, showcasing listings, agent information, and more in a modern format.</p>
                     <a href="operation-res302.html" class="cta-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation Sunnymac</h3>
                     <img src="images/estimator.png" alt="Screenshot of Operation Sunnymac" class="project-screenshot">
-                    <p>An energy assessment tool that estimates solar panel requirements based on roof size, home type, and electricity consumption.</p>
+                    <p>A tool that estimates solar panel requirements based on roof size, home type, and electricity consumption.</p>
                     <a href="operation-sunnymac.html" class="cta-button">View More</a>
                 </div>
             </div>

@@ -3,31 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills - Your Name</title>
+    <title>Skills - Kayb Campbell</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Full-page background styling */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Greyscale matrix background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
+            filter: grayscale(100%);
+            z-index: -1;
+        }
+
+        /* Centered skills container styling */
+        .skills-container {
+            max-width: 700px;
+            width: 90%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Navigation buttons styling */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Skills section styling */
+        .skills-section {
+            color: white;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category h3 {
+            color: #00ff00;
+        }
+
+        .skill-category ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #ccc;
+        }
+
+        /* Language-specific colors */
+        .html { color: #e34c26; }
+        .css { color: #264de4; }
+        .javascript { color: #f0db4f; }
+        .python { color: #306998; }
+        .telegram { color: #0088cc; }
+        .corsapp { color: #ff4500; }
+        .react { color: #61dafb; }
+        .vue { color: #42b883; }
+    </style>
 </head>
 <body>
-    <!-- Menu Bar -->
-    <nav class="menu-bar">
-        <a href="index.html" class="menu-item">Home</a>
-        <a href="projects.html" class="menu-item">Projects</a>
-        
-        <!-- Back to Projects button (only on project-specific pages) -->
-        <a href="projects.html" class="menu-item back-to-projects">Back to Projects</a>
-    </nav>
-    
-    <header>
-        <h2>Skills & Experience</h2>
-    </header>
-    <section class="skills-section">
-        <div class="skill-category">
-            <h3>Frontend</h3>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>React, Vue.js</li>
-            </ul>
+    <div class="skills-container">
+        <!-- Navigation buttons inside the black container -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="skills.html" class="nav-button">Skills</a>
+            <a href="contact.html" class="nav-button">Contact</a>
         </div>
-        <!-- Add more skill categories as needed -->
-    </section>
+
+        <header>
+            <h2>Skills & Experience</h2>
+        </header>
+
+        <section class="skills-section">
+            <div class="skill-category">
+                <h3>Frontend Development</h3>
+                <ul>
+                    <li><span class="html">HTML</span>, <span class="css">CSS</span>, <span class="javascript">JavaScript</span> for interactive and responsive design (Operation Stone, Operation Sunnymac)</li>
+                    <li>Custom styling and animations for modern UIs (Operation DTH, Operation Res302)</li>
+                    <li><span class="react">React.js</span> and <span class="vue">Vue.js</span> for dynamic user interfaces</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Backend Development</h3>
+                <ul>
+                    <li>API integration and data handling (Operation Stone, Operation B C)</li>
+                    <li>Database management and live data synchronization (Operation Stone)</li>
+                    <li><span class="python">Python</span> for automation and backend logic (Operation B C, Operation Sunnymac)</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>E-commerce & Application Development</h3>
+                <ul>
+                    <li><span class="telegram">Telegram API</span> integration for chatbot-based e-commerce (Operation B C)</li>
+                    <li>Product management and inventory tracking tools (Operation DTH, Operation Res302)</li>
+                    <li>Custom fusion generator using <span class="corsapp">CORS</span> and API requests (Operation Pokegang)</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Tools & Technologies</h3>
+                <ul>
+                    <li>Version control with Git and GitHub for project collaboration</li>
+                    <li>Responsive design and cross-browser compatibility testing</li>
+                    <li>Linux, Node.js, and Docker for development and deployment</li>
+                </ul>
+            </div>
+        </section>
+    </div>
 </body>
 </html>

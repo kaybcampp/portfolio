@@ -33,51 +33,48 @@
     color: #00cc00;
 }
 
-/* Hide "Back to Projects" button on index and main projects pages */
-.back-to-projects {
-    display: none;
-}
-
 /* Content container to avoid menu overlap */
 .content {
     padding-top: 60px; /* Adjust based on menu height */
 }
-/* Matrix background styling */
-body {
+
+/* Matrix background styling with greyscale applied only to the background */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    padding: 0;
+    filter: grayscale(100%);
+    z-index: -1; /* Ensure it stays behind other content */
 }
 
 /* Main container for each project page */
 .project-container {
     background: rgba(0, 0, 0, 0.9);
     color: white;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
+    max-width: 95vw;
+    margin: 30px auto;
+    padding: 40px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: left;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensure content stays above background */
 }
 
-/* Header styling for a smaller title at the top */
+/* Header styling */
 .project-container header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-bottom: 20px;
 }
 
 .project-container h1 {
     color: #00ff00;
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin: 10px 0;
     text-align: center;
 }
@@ -87,39 +84,54 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 15px;
+    padding: 20px;
 }
 
-/* Thumbnails stacked vertically on the left */
+/* Thumbnails styling */
 .gallery-thumbnails {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.gallery-thumbnails img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+.gallery-thumbnails img,
+.video-thumbnail {
+    width: 80px;
+    height: 80px;
     border-radius: 5px;
     cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.3s;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
-.gallery-thumbnails img:hover, .gallery-thumbnails img.active {
-    border-color: #00ff00;
+.gallery-thumbnails img:hover,
+.video-thumbnail:hover {
+    background-color: rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.5);
+    transform: scale(1.05);
 }
 
-/* Main image styling */
-.gallery-display #mainImage {
+/* Main image and video styling */
+.gallery-display img,
+.gallery-display video {
     width: 100%;
-    max-height: 350px;
-    object-fit: cover;
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
     border-radius: 10px;
-    margin-bottom: 10px;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    background-color: rgba(0, 255, 0, 0.1);
+    transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
-/* Tags container below the main image */
+.gallery-display img:hover,
+.gallery-display video:hover {
+    background-color: rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.5);
+    transform: scale(1.02);
+}
+
+/* Tags container */
 .tags-container {
     display: flex;
     flex-direction: column;
@@ -127,7 +139,6 @@ body {
     margin-top: 10px;
 }
 
-/* Start date styling */
 .start-date {
     color: #ccc;
     font-size: 0.85em;
@@ -141,7 +152,6 @@ body {
     gap: 8px;
 }
 
-/* Styling for code language tags */
 .code-tags .tag {
     padding: 3px 8px;
     border-radius: 5px;
@@ -156,26 +166,6 @@ body {
 .tag.python { background-color: #306998; }
 .tag.nodejs { background-color: #68a063; }
 
-/* Zoom box styling */
-.zoom-box {
-    position: absolute;
-    display: none;
-    width: 300px;
-    height: 300px;
-    border: 2px solid #00ff00;
-    overflow: hidden;
-    pointer-events: none;
-    border-radius: 8px;
-    z-index: 100;
-}
-
-.zoom-box img {
-    position: absolute;
-    width: 400%;
-    height: auto;
-    max-width: none;
-}
-
 /* Only titles in green color */
 .details h2 {
     color: #00ff00;
@@ -183,25 +173,36 @@ body {
     margin-top: 15px;
 }
 
-/* Text content for Problem, Solution, and What's Next sections in light color */
+/* Text content for Problem, Solution, and What's Next sections */
 .details p {
     color: #ccc;
-    font-size: 0.95em;
-    margin-top: 5px;
-}
-/* Style for video thumbnail with play button overlay */
-.video-thumbnail {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
 }
 
-.video-thumbnail img {
+/* Overlay for Problem, Solution, and What's Next */
+.overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #00ff00;
+    cursor: pointer;
 }
 
 /* Play button styling */
@@ -219,23 +220,21 @@ body {
     align-items: center;
     justify-content: center;
 }
-/* Zoom box styling */
-.zoom-box {
-    position: absolute;
-    display: none; /* Hidden by default */
-    width: 300px; /* Size of the zoom box */
-    height: 300px;
-    border: 2px solid #00ff00;
-    overflow: hidden;
-    pointer-events: none;
-    border-radius: 8px;
-    z-index: 100;
+
+/* "Back to Projects" button */
+.back-to-projects-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00ff00;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s;
 }
 
-/* Styling for the zoomed image inside the zoom box */
-.zoom-box img {
-    position: absolute;
-    width: 400%; /* Large image scale for magnification */
-    height: auto;
-    max-width: none;
+.back-to-projects-btn:hover {
+    background-color: #00cc00;
 }
