@@ -107,17 +107,32 @@
             transform: scale(1.05);
         }
 
-        /* Information icon */
+        /* Information icon with constant glow effect, styled as a circle */
         .info-icon {
             position: absolute;
             top: 155px;
             right: 10px;
-            font-size: 24px;
+            font-size: 14px;
             color: #00ff00;
             cursor: pointer;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 50%;
-            padding: 5px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
+            }
+            50% {
+                box-shadow: 0 0 15px 4px #00ff00, 0 0 20px 6px #00ff00;
+            }
         }
 
         /* Overlay for Problem, Solution, and What's Next */
@@ -256,18 +271,23 @@
     </div>
 
     <script>
+        // Ensure the overlay is hidden initially
+        document.getElementById('infoOverlay').style.display = 'none';
+
         // Toggle the visibility of the overlay
         function toggleOverlay() {
             const overlay = document.getElementById('infoOverlay');
-            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'block' : 'none';
+            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
         }
 
-        // Function to replace the main image with the clicked thumbnail
+        // Function to replace the main image with the clicked thumbnail and set enlarged link
         function changeImage(imageSrc) {
             const mainImage = document.getElementById('mainImage');
             const imageLink = document.getElementById('imageLink');
+            
             mainImage.src = imageSrc;
             imageLink.href = imageSrc;
+            mainImage.style.display = 'block';
         }
     </script>
 </body>

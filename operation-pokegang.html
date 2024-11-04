@@ -138,7 +138,7 @@
             padding: 5px;
         }
 
-        /* Information icon */
+        /* Information icon with constant glow effect, styled as a circle */
         .info-icon {
             position: absolute;
             top: 155px;
@@ -148,10 +148,25 @@
             cursor: pointer;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 50%;
-            padding: 5px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
+            animation: glow 2s infinite;
         }
 
-        /* Overlay for Problem, Solution, and What's Next */
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
+            }
+            50% {
+                box-shadow: 0 0 15px 4px #00ff00, 0 0 20px 6px #00ff00;
+            }
+        }
+
+        /* Expanded overlay to cover the entire black container */
         .overlay {
             display: none;
             position: absolute;
@@ -159,31 +174,40 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.95);
             color: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 40px;
+            border-radius: 15px;
             overflow-y: auto;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
         }
 
         .overlay h2 {
             color: #00ff00;
             margin-top: 15px;
+            font-size: 1.8em;
+            text-align: center;
         }
 
         .overlay p {
             color: #ccc;
-            font-size: 1em;
-            margin-top: 10px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 15px 0;
+            max-width: 90%;
+            text-align: justify;
         }
 
         /* Close button inside overlay */
         .close-overlay {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
             color: #00ff00;
             cursor: pointer;
         }
@@ -201,6 +225,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 10px;
+            color: white;
         }
     </style>
 </head>
@@ -247,7 +272,7 @@
                 <!-- Information icon -->
                 <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
 
-                <!-- Overlay for Problem, Solution, and What's Next -->
+                <!-- Full overlay for Problem, Solution, and What's Next -->
                 <div class="overlay" id="infoOverlay">
                     <span class="close-overlay" onclick="toggleOverlay()">✖</span>
                     <h2>Problem</h2>
@@ -280,10 +305,13 @@
     </div>
 
     <script>
+        // Ensure the overlay is hidden initially
+        document.getElementById('infoOverlay').style.display = 'none';
+
         // Toggle the visibility of the overlay
         function toggleOverlay() {
             const overlay = document.getElementById('infoOverlay');
-            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'block' : 'none';
+            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
         }
 
         // Function to replace the main image with the clicked thumbnail
@@ -310,3 +338,4 @@
     </script>
 </body>
 </html>
+
