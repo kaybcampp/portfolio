@@ -175,3 +175,23 @@ body {
     align-items: center;
     justify-content: center;
 }
+/* Zoom box styling */
+.zoom-box {
+    position: absolute;
+    display: none; /* Hidden by default */
+    width: 300px; /* Size of the zoom box */
+    height: 300px;
+    border: 2px solid #00ff00;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+/* Styling for the zoomed image inside the zoom box */
+.zoom-box img {
+    position: absolute;
+    width: 400%; /* Large image scale for magnification */
+    height: auto;
+    max-width: none;
+}

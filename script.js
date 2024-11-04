@@ -1,56 +1,58 @@
 const carousel = document.querySelector('.carousel');
 const items = document.querySelectorAll('.carousel-item');
 
-// Show the next item by moving the first item to the end
+// Carousel navigation
 function showNext() {
     const firstItem = carousel.firstElementChild;
     carousel.appendChild(firstItem);
 }
 
-// Show the previous item by moving the last item to the start
 function showPrevious() {
     const lastItem = carousel.lastElementChild;
     carousel.insertBefore(lastItem, carousel.firstElementChild);
 }
+
+// Thumbnail Image Selection
 function showImage(selectedImage) {
     const mainImage = document.getElementById('mainImage');
     mainImage.src = selectedImage.src;
     
-    // Remove 'active' class from all thumbnails and add it to the clicked one
+    // Update 'active' class for thumbnails
     const thumbnails = document.querySelectorAll('.gallery-thumbnails img');
     thumbnails.forEach(thumb => thumb.classList.remove('active'));
     selectedImage.classList.add('active');
 }
-// Select the main image and create the zoom box
+
+// Zoom functionality
 const mainImage = document.getElementById('mainImage');
 const zoomBox = document.createElement('div');
 zoomBox.classList.add('zoom-box');
 const zoomedImage = document.createElement('img');
-zoomedImage.src = mainImage.src; // Use the same image source
+zoomedImage.src = mainImage.src; // Sync with main image
 zoomBox.appendChild(zoomedImage);
 document.body.appendChild(zoomBox);
 
-// Show zoom box and adjust its position on mouse move
+// Function to center zoom box on cursor and display zoomed image
 mainImage.addEventListener('mousemove', (e) => {
     zoomBox.style.display = 'block';
 
-    // Calculate cursor's position within the image
+    // Get cursor position relative to mainImage
     const rect = mainImage.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const xPercent = (x / rect.width) * 100;
     const yPercent = (y / rect.height) * 100;
 
-    // Position the zoomed-in image within the zoom box, centered on cursor
-    zoomedImage.style.left = `-${xPercent * 1.3}%`; // Adjust for 130% zoom level
+    // Position the zoomed image to keep the cursor centered in zoom box
+    zoomedImage.style.left = `-${xPercent * 1.3}%`; // Adjust for 130% zoom
     zoomedImage.style.top = `-${yPercent * 1.3}%`;
 
-    // Position the zoom box so the cursor stays centered within it
+    // Position the zoom box with cursor at its center
     zoomBox.style.left = `${e.pageX - zoomBox.offsetWidth / 2}px`;
     zoomBox.style.top = `${e.pageY - zoomBox.offsetHeight / 2}px`;
 });
 
-// Hide the zoom box when the cursor leaves the image
+// Hide the zoom box when cursor leaves the main image
 mainImage.addEventListener('mouseleave', () => {
     zoomBox.style.display = 'none';
 });

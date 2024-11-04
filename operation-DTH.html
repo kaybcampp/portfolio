@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation DTH - Project Details</title>
+    <link rel="stylesheet" href="backend.css">
+</head>
+<body>
+    <div class="project-container">
+        <header>
+            <h1>Operation DTH (DracosTrapHouse)</h1>
+        </header>
+        
+        <!-- Image gallery section with side-by-side layout -->
+        <div class="gallery">
+            <!-- Thumbnails stacked vertically on the left -->
+            <div class="gallery-thumbnails">
+                <img src="images/homeDTH.png" alt="Home Page Thumbnail" onclick="changeImage('images/homeDTH.png')">
+                <img src="images/aboutDTH.png" alt="About Us Page Thumbnail" onclick="changeImage('images/aboutDTH.png')">
+                <img src="images/contactusDTH.png" alt="Contact Us Page Thumbnail" onclick="changeImage('images/contactusDTH.png')">
+                
+                <!-- Video thumbnail with play button overlay -->
+                <div class="video-thumbnail" onclick="changeToVideo()">
+                    <img src="images/mainLogo.png" alt="Live Demo Video Thumbnail">
+                    <span class="play-button">&#9658;</span>
+                </div>
+            </div>
+
+            <!-- Main display area for images and video -->
+            <div class="gallery-display">
+                <img id="mainImage" src="images/homeDTH.png" alt="Main Display Image" style="width: 100%; max-height: 350px; border-radius: 10px;" onmousemove="zoom(event)" onmouseleave="hideZoom()">
+                
+                <!-- Zoom box for magnification -->
+                <div id="zoomBox" class="zoom-box">
+                    <img id="zoomImage" src="images/homeDTH.png" alt="Zoomed Image">
+                </div>
+                
+                <!-- Video element (hidden by default) -->
+                <video id="mainVideo" controls style="display: none; width: 100%; max-height: 350px; border-radius: 10px;">
+                    <source src="images/siteVideoDTH.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- Code tags and start date under the main display area -->
+                <div class="tags-container">
+                    <span class="start-date">Started: January 2024</span>
+                    <div class="code-tags">
+                        <span class="tag html">HTML</span>
+                        <span class="tag css">CSS</span>
+                        <span class="tag javascript">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem, Solution, and What's Next sections -->
+        <section class="details">
+            <h2>Problem</h2>
+            <p>The client needed a custom e-commerce website for DracosTrapHouse, designed to showcase products, portfolios, and project updates with a unique, tech-savvy aesthetic. The site required user engagement features, smooth navigation, and integration with social platforms.</p>
+            
+            <h2>Solution</h2>
+            <p>To meet these needs, I built a sleek, dark-themed website with a Matrix-inspired aesthetic using HTML, CSS, and JavaScript. The site includes an animated introduction, a structured product display, a dedicated portfolio section, and social media integrations. I utilized responsive design for seamless display across devices, ensuring an immersive and modern experience.</p>
+            
+            <h2>What's Next</h2>
+            <p>The next steps include implementing additional product updates, refining interactive animations, and incorporating real-time analytics to track user engagement and further enhance the website's usability.</p>
+        </section>
+    </div>
+    
+    <script>
+        // Function to replace the main image with the clicked thumbnail
+        function changeImage(imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+            document.getElementById('zoomImage').src = imageSrc;
+            document.getElementById('mainImage').style.display = 'block';
+            document.getElementById('mainVideo').style.display = 'none';
+        }
+        
+        // Function to display the video in the main display area
+        function changeToVideo() {
+            document.getElementById('mainImage').style.display = 'none';
+            document.getElementById('mainVideo').style.display = 'block';
+            document.getElementById('mainVideo').play();
+            document.getElementById('zoomBox').style.display = 'none'; // Hide zoom box when video is playing
+        }
+        
+        // Zoom functionality
+        function zoom(event) {
+            const zoomBox = document.getElementById('zoomBox');
+            const zoomImage = document.getElementById('zoomImage');
+            const mainImage = document.getElementById('mainImage');
+            const rect = mainImage.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            zoomBox.style.display = 'block';
+            zoomBox.style.left = `${event.pageX + 10}px`;
+            zoomBox.style.top = `${event.pageY + 10}px`;
+
+            const zoomX = (x / rect.width) * 100;
+            const zoomY = (y / rect.height) * 100;
+
+            zoomImage.style.transform = `translate(-${zoomX}%, -${zoomY}%) scale(3)`;
+        }
+
+        function hideZoom() {
+            document.getElementById('zoomBox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
