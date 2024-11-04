@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation B C - Project Details</title>
+    <link rel="stylesheet" href="backend.css">
+</head>
+<body>
+    <div class="project-container">
+        <header>
+            <h1>Operation B C</h1>
+        </header>
+        
+        <!-- Image gallery section with side-by-side layout -->
+        <div class="gallery">
+            <!-- Thumbnails stacked vertically on the left -->
+            <div class="gallery-thumbnails">
+                <img src="images/productsTN.png" alt="Product Thumbnail 1" onclick="changeImage('images/productsTN.png')">
+                <img src="images/orderTN.png" alt="Product Thumbnail 2" onclick="changeImage('images/orderTN.png')">
+                <img src="images/cartTN.png" alt="Product Thumbnail 3" onclick="changeImage('images/cartTN.png')">
+            </div>
+
+            <!-- Main image display -->
+            <div class="gallery-display">
+                <img id="mainImage" src="images/productsTN.png" alt="Main Display Image">
+                
+                <!-- Code tags and start date under the main image -->
+                <div class="tags-container">
+                    <span class="start-date">Started: March 2023</span>
+                    <div class="code-tags">
+                        <span class="tag python">Python</span>
+                        <span class="tag telegram">Telegram API</span>
+                        <span class="tag javascript">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem, Solution, and What's Next sections -->
+        <section class="details">
+            <h2>Problem</h2>
+            <p>The client, a small business owner, needed a fully functional marketplace that could be accessed via Telegram, with an intuitive shopping experience for customers. The bot required a comprehensive menu, organized product categories, add-to-cart functionality, and payment integration.</p>
+            
+            <h2>Solution</h2>
+            <p>To meet these needs, I developed a Telegram bot using Python and the Telegram API. The bot features a welcoming interface with a message guiding users through its functionality. Products are categorized for easy navigation, with detailed descriptions and prices displayed. The add-to-cart function accurately updates item quantities and the total balance, creating a seamless shopping experience.</p>
+            
+            <h2>What's Next</h2>
+            <p>The project awaits the client's company logos and their preferred payment integration method to finalize the shopping and checkout experience.</p>
+        </section>
+    </div>
+    
+    <script>
+        // JavaScript function to replace the main image with the clicked thumbnail
+        function changeImage(imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+        }
+    </script>
+</body>
+</html>

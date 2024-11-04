@@ -8,6 +8,7 @@ body {
     text-align: center;
     padding: 0;
 }
+
 /* Main container for each project page */
 .project-container {
     background: rgba(0, 0, 0, 0.9);
@@ -32,48 +33,41 @@ body {
 
 .project-container h1 {
     color: #00ff00;
-    font-size: 1.5em; /* Smaller title */
+    font-size: 1.5em;
     margin: 10px 0;
     text-align: center;
 }
 
-/* Centered Image Gallery and Details in two columns */
-.project-content {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-    margin-top: 20px;
-}
-
-/* Left column: Details */
-.details {
-    flex: 1;
-    padding-right: 10px;
-    text-align: left;
-}
-
-.details h2 {
-    color: #00ff00;
-    font-size: 1.2em;
-    margin-top: 15px;
-}
-
-.details p {
-    color: #ccc;
-    font-size: 0.95em;
-    margin-top: 5px;
-}
-
-/* Right column: Gallery */
+/* Gallery container for side-by-side layout */
 .gallery {
-    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+/* Thumbnails stacked vertically on the left */
+.gallery-thumbnails {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
 }
 
-.gallery-display img {
+.gallery-thumbnails img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.gallery-thumbnails img:hover, .gallery-thumbnails img.active {
+    border-color: #00ff00;
+}
+
+/* Main image styling */
+.gallery-display #mainImage {
     width: 100%;
     max-height: 350px;
     object-fit: cover;
@@ -81,7 +75,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* Tags container for positioning code tags and start date under main image */
+/* Tags container below the main image */
 .tags-container {
     display: flex;
     flex-direction: column;
@@ -112,17 +106,17 @@ body {
 }
 
 /* Color-coded tags for languages */
-.tag.html { background-color: #e34c26; } /* HTML - orange */
-.tag.css { background-color: #264de4; } /* CSS - blue */
-.tag.javascript { background-color: #f0db4f; color: black; } /* JavaScript - yellow */
-.tag.python { background-color: #306998; } /* Python - blue */
-.tag.nodejs { background-color: #68a063; } /* Node.js - green */
+.tag.html { background-color: #e34c26; }
+.tag.css { background-color: #264de4; }
+.tag.javascript { background-color: #f0db4f; color: black; }
+.tag.python { background-color: #306998; }
+.tag.nodejs { background-color: #68a063; }
 
 /* Zoom box styling */
 .zoom-box {
     position: absolute;
-    display: none; /* Hidden by default */
-    width: 300px; /* Size of the zoom box */
+    display: none;
+    width: 300px;
     height: 300px;
     border: 2px solid #00ff00;
     overflow: hidden;
@@ -131,10 +125,23 @@ body {
     z-index: 100;
 }
 
-/* Styling for the zoomed image inside the zoom box */
 .zoom-box img {
     position: absolute;
-    width: 400%; /* Set to 400% for magnification */
+    width: 400%;
     height: auto;
-    max-width: none; /* Prevent scaling within container */
+    max-width: none;
+}
+
+/* Only titles in green color */
+.details h2 {
+    color: #00ff00;
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+
+/* Text content for Problem, Solution, and What's Next sections in light color */
+.details p {
+    color: #ccc;
+    font-size: 0.95em;
+    margin-top: 5px;
 }
