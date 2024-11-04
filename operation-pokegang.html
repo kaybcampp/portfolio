@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation POKEGANG - Project Details</title>
+    <link rel="stylesheet" href="backend.css">
+</head>
+<body>
+    <div class="project-container">
+        <header>
+            <h1>Operation POKEGANG</h1>
+        </header>
+        
+        <!-- Image gallery section with side-by-side layout -->
+        <div class="gallery">
+            <!-- Thumbnails stacked vertically on the left -->
+            <div class="gallery-thumbnails">
+                <img src="images/pokeDex1.png" alt="Pokemon Thumbnail 1" onclick="changeImage('images/pokeDex1.png')">
+                <img src="images/pokeDex2.png" alt="Pokemon Thumbnail 2" onclick="changeImage('images/pokeDex2.png')">
+                
+                <!-- Video thumbnail with play button overlay -->
+                <div class="video-thumbnail" onclick="changeToVideo()">
+                    <img src="images/pokeDex1.png" alt="Live Demo Video">
+                    <span class="play-button">&#9658;</span> <!-- Unicode for play button -->
+                </div>
+            </div>
+
+            <!-- Main display area for images and video -->
+            <div class="gallery-display">
+                <img id="mainImage" src="images/pokeDex2.png" alt="Main Display Image" style="width: 100%; max-height: 350px; border-radius: 10px;">
+                
+                <!-- Video element (hidden by default) -->
+                <video id="mainVideo" controls style="display: none; width: 100%; max-height: 350px; border-radius: 10px;">
+                    <source src="images/pokedexvid.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- Code tags and start date under the main display area -->
+                <div class="tags-container">
+                    <span class="start-date">Started: January 2024</span>
+                    <div class="code-tags">
+                        <span class="tag python">Python</span>
+                        <span class="tag javascript">JavaScript</span>
+                        <span class="tag corsapp">CORS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem, Solution, and What's Next sections -->
+        <section class="details">
+            <h2>Problem</h2>
+            <p>The client, a small business owner specializing in custom sneakers, wanted a fun and unique way to showcase their products. They envisioned a Pokémon fusion generator that would allow for various Pokémon combinations, with each custom shoe displayed on the different Pokémon variations created by the fusion tool.</p>
+            
+            <h2>Solution</h2>
+            <p>To bring this idea to life, I developed a Pokémon fusion application using Python and JavaScript, integrated with CORS for data handling. The application enables users to combine different Pokémon types, dynamically generating morphed Pokémon creations. This allows for an interactive and engaging experience, with each generated Pokémon ready to display the client's custom shoes.</p>
+            
+            <h2>What's Next</h2>
+            <p>The project awaits the client's custom shoe images to be integrated onto each generated Pokémon. The fusion generator, built with CORS compatibility, remains functional and ready for the final customization.</p>
+        </section>
+    </div>
+    
+    <script>
+        // Function to replace the main image with the clicked thumbnail
+        function changeImage(imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+            document.getElementById('mainImage').style.display = 'block';
+            document.getElementById('mainVideo').style.display = 'none';
+        }
+        
+        // Function to display the video in the main display area
+        function changeToVideo() {
+            document.getElementById('mainImage').style.display = 'none';
+            document.getElementById('mainVideo').style.display = 'block';
+            document.getElementById('mainVideo').play();
+        }
+    </script>
+</body>
+</html>
