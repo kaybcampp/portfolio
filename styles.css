@@ -6,6 +6,43 @@
     font-family: Arial, sans-serif;
 }
 
+/* Menu bar styling */
+.menu-bar {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.menu-item {
+    color: #00ff00;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.menu-item:hover {
+    color: #00cc00;
+}
+
+/* Hide "Back to Projects" button on index and main projects pages */
+.back-to-projects {
+    display: none;
+}
+
+/* Content container to avoid menu overlap */
+.content {
+    padding-top: 60px; /* Adjust based on menu height */
+}
+
 /* Matrix background styling */
 body {
     background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
