@@ -63,7 +63,7 @@
             background-color: #00cc00;
         }
 
-        /* Center the gallery display and maximize image size with green outline and hover effect */
+        /* Gallery display styling */
         .gallery {
             display: flex;
             align-items: center;
@@ -109,7 +109,7 @@
             transform: scale(1.05);
         }
 
-        /* Video thumbnail with play button overlay */
+        /* Play button overlay for video thumbnail only */
         .video-thumbnail {
             position: relative;
             width: 80px;
@@ -138,12 +138,41 @@
             padding: 5px;
         }
 
-        /* Information icon with constant glow effect, styled as a circle */
+        /* Tooltip message bubble */
+        .message-bubble {
+            position: absolute;
+            top: 140px;
+            right: 45px;
+            padding: 10px 15px;
+            background: rgba(0, 255, 0, 0.9);
+            color: black;
+            font-size: 0.9em;
+            border-radius: 10px;
+            white-space: nowrap;
+            z-index: 5;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Triangle for speech bubble */
+        .message-bubble::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0, 255, 0, 0.9);
+        }
+
+        /* Information icon with constant glow effect */
         .info-icon {
             position: absolute;
             top: 155px;
             right: 10px;
-            font-size: 24px;
+            font-size: 14px;
             color: #00ff00;
             cursor: pointer;
             background: rgba(0, 0, 0, 0.6);
@@ -157,16 +186,7 @@
             animation: glow 2s infinite;
         }
 
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
-            }
-            50% {
-                box-shadow: 0 0 15px 4px #00ff00, 0 0 20px 6px #00ff00;
-            }
-        }
-
-        /* Expanded overlay to cover the entire black container */
+        /* Overlay styling for Problem, Solution, and What's Next */
         .overlay {
             display: none;
             position: absolute;
@@ -180,10 +200,11 @@
             border-radius: 15px;
             overflow-y: auto;
             z-index: 10;
+            text-align: left;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: left;
+            gap: 20px;
         }
 
         .overlay h2 {
@@ -231,7 +252,6 @@
 </head>
 <body>
     <div class="project-container">
-        <!-- Navigation buttons inside the black container -->
         <div class="nav-buttons">
             <a href="index.html" class="nav-button">Home</a>
             <a href="projects.html" class="nav-button">Projects</a>
@@ -243,36 +263,28 @@
             <h1>Operation POKEGANG</h1>
         </header>
 
-        <!-- Image gallery section -->
         <div class="gallery">
-            <!-- Thumbnails stacked vertically on the left -->
             <div class="gallery-thumbnails">
                 <img src="images/pokeDex1.png" alt="Pokemon Thumbnail 1" onclick="changeImage('images/pokeDex1.png')">
                 <img src="images/pokeDex2.png" alt="Pokemon Thumbnail 2" onclick="changeImage('images/pokeDex2.png')">
-
-                <!-- Video thumbnail with play button overlay -->
                 <div class="video-thumbnail" onclick="changeToVideo()">
                     <img src="images/pokeDex1.png" alt="Live Demo Video">
                     <span class="play-button">&#9658;</span>
                 </div>
             </div>
 
-            <!-- Main display area for images and video with info icon and overlay -->
             <div class="gallery-display">
                 <a id="imageLink" href="images/pokeDex2.png" target="_blank">
                     <img id="mainImage" src="images/pokeDex2.png" alt="Main Display Image">
                 </a>
-
-                <!-- Video element (hidden by default) -->
                 <video id="mainVideo" controls style="display: none;">
                     <source src="images/pokedexvid.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
 
-                <!-- Information icon -->
+                <div class="message-bubble" id="tooltip">Click for details about this project</div>
                 <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
 
-                <!-- Full overlay for Problem, Solution, and What's Next -->
                 <div class="overlay" id="infoOverlay">
                     <span class="close-overlay" onclick="toggleOverlay()">✖</span>
                     <h2>Problem</h2>
@@ -285,10 +297,8 @@
                     <p>The project awaits the client's custom shoe images to be integrated onto each generated Pokémon. The fusion generator, built with CORS compatibility, remains functional and ready for the final customization.</p>
                 </div>
 
-                <!-- Instruction text below the image -->
                 <p class="click-instruction">Click on the image for an enlarged view.</p>
 
-                <!-- Code tags and start date under the main display area -->
                 <div class="tags-container">
                     <span class="start-date">Started: January 2024</span>
                     <div class="code-tags">
@@ -300,42 +310,38 @@
             </div>
         </div>
 
-        <!-- Centered Back to Projects button -->
         <a href="projects.html" class="back-to-projects-btn">Back to Projects</a>
     </div>
 
     <script>
-        // Ensure the overlay is hidden initially
         document.getElementById('infoOverlay').style.display = 'none';
 
-        // Toggle the visibility of the overlay
         function toggleOverlay() {
             const overlay = document.getElementById('infoOverlay');
             overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
         }
 
-        // Function to replace the main image with the clicked thumbnail
         function changeImage(imageSrc) {
             const mainImage = document.getElementById('mainImage');
+            const imageLink = document.getElementById('imageLink');
+            
             mainImage.src = imageSrc;
+            imageLink.href = imageSrc;
+
             mainImage.style.display = 'block';
             document.getElementById('mainVideo').style.display = 'none';
-
-            // Update the link for enlarged view to match the current image
-            document.getElementById('imageLink').href = imageSrc;
         }
 
-        // Function to display the video in the main display area
         function changeToVideo() {
             document.getElementById('mainImage').style.display = 'none';
             const mainVideo = document.getElementById('mainVideo');
             mainVideo.style.display = 'block';
             mainVideo.play();
-
-            // Update the link for enlarged view to the video file if desired
-            document.getElementById('imageLink').href = 'videos/pokedexvid.mp4';
         }
+
+        setTimeout(() => {
+            document.getElementById('tooltip').style.display = 'none';
+        }, 8000);
     </script>
 </body>
 </html>
-

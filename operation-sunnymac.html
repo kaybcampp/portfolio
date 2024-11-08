@@ -64,14 +64,14 @@
             color: white;
         }
 
-        /* Center the gallery display and maximize image size */
+        /* Gallery and hover styling */
         .gallery {
             display: flex;
-            align-items: flex-start;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
-        /* Main image and video display with green hover outline */
         .gallery-display img,
         .gallery-display video {
             width: 100%;
@@ -80,9 +80,9 @@
             object-fit: contain;
             border-radius: 10px;
             cursor: pointer;
-            border: 2px solid rgba(0, 255, 0, 0.3);
             background-color: rgba(0, 255, 0, 0.1);
-            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .gallery-display img:hover,
@@ -117,16 +117,9 @@
             border: 2px solid rgba(0, 255, 0, 0.3);
             border-radius: 5px;
             overflow: hidden;
-            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
         }
 
-        .video-thumbnail:hover {
-            background-color: rgba(0, 255, 0, 0.3);
-            border-color: rgba(0, 255, 0, 0.5);
-            transform: scale(1.05);
-        }
-
-        .play-button {
+        .video-thumbnail .play-button {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -138,12 +131,40 @@
             padding: 5px;
         }
 
-       /* Information icon with constant glow effect, styled as a circle */
+        /* Tooltip message bubble */
+        .message-bubble {
+            position: absolute;
+            top: 140px;
+            right: 45px;
+            padding: 10px 15px;
+            background: rgba(0, 255, 0, 0.9);
+            color: black;
+            font-size: 0.9em;
+            border-radius: 10px;
+            white-space: nowrap;
+            z-index: 5;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-bubble::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0, 255, 0, 0.9);
+        }
+
+        /* Information icon with constant glow effect */
         .info-icon {
             position: absolute;
             top: 155px;
             right: 10px;
-            font-size: 24px;
+            font-size: 14px;
             color: #00ff00;
             cursor: pointer;
             background: rgba(0, 0, 0, 0.6);
@@ -157,16 +178,7 @@
             animation: glow 2s infinite;
         }
 
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
-            }
-            50% {
-                box-shadow: 0 0 15px 4px #00ff00, 0 0 20px 6px #00ff00;
-            }
-        }
-
-        /* Expanded overlay to cover the entire black container */
+        /* Overlay for Problem, Solution, and What's Next */
         .overlay {
             display: none;
             position: absolute;
@@ -180,10 +192,11 @@
             border-radius: 15px;
             overflow-y: auto;
             z-index: 10;
+            text-align: left;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: left;
+            gap: 20px;
         }
 
         .overlay h2 {
@@ -202,24 +215,21 @@
             text-align: justify;
         }
 
-        /* Close button inside overlay */
         .close-overlay {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 28px;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
             color: #00ff00;
             cursor: pointer;
         }
 
-        /* Green text for click instruction */
         .click-instruction {
             color: #00ff00;
             margin-top: 10px;
             font-size: 1.1em;
         }
 
-        /* Tags and start date below instruction text */
         .tags-container {
             display: flex;
             flex-direction: column;
@@ -227,29 +237,10 @@
             margin-top: 10px;
             color: white;
         }
-
-        /* Back to Projects button styling */
-        .back-to-projects-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #00ff00;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .back-to-projects-btn:hover {
-            background-color: #00cc00;
-        }
     </style>
 </head>
 <body>
     <div class="project-container">
-        <!-- Navigation buttons inside the black container -->
         <div class="nav-buttons">
             <a href="index.html" class="nav-button">Home</a>
             <a href="projects.html" class="nav-button">Projects</a>
@@ -261,54 +252,46 @@
             <h1>Operation Sunnymac</h1>
         </header>
 
-        <!-- Image gallery section -->
         <div class="gallery">
-            <!-- Thumbnails stacked vertically on the left -->
             <div class="gallery-thumbnails">
                 <img src="images/intro.png" alt="Thumbnail 1" onclick="changeImage('images/intro.png')">
                 <img src="images/estimator.png" alt="Thumbnail 2" onclick="changeImage('images/estimator.png')">
                 <img src="images/estimatorLogic.png" alt="Thumbnail 3" onclick="changeImage('images/estimatorLogic.png')">
                 <img src="images/aboutMe.png" alt="Thumbnail 4" onclick="changeImage('images/aboutMe.png')">
-
-                <!-- Video thumbnail with play button overlay -->
                 <div class="video-thumbnail" onclick="changeToVideo()">
                     <img src="images/intro.png" alt="Live Demo Video Thumbnail">
                     <span class="play-button">&#9658;</span>
                 </div>
             </div>
 
-            <!-- Main display area for images and video with info icon and overlay -->
             <div class="gallery-display">
                 <a id="imageLink" href="images/intro.png" target="_blank">
                     <img id="mainImage" src="images/intro.png" alt="Main Display Image">
                 </a>
 
-                <!-- Video element (hidden by default) -->
                 <video id="mainVideo" controls style="display: none;">
                     <source src="images/sunnymacVid.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
 
-                <!-- Information icon -->
+                <div class="message-bubble" id="tooltip">Click for details about this project</div>
+
                 <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
 
-                <!-- Full overlay for Problem, Solution, and What's Next -->
                 <div class="overlay" id="infoOverlay">
                     <span class="close-overlay" onclick="toggleOverlay()">✖</span>
                     <h2>Problem</h2>
-                    <p>The client required a dynamic interface for tracking and managing solar installation projects, with real-time updates and a user-friendly design for both customers and project managers.</p>
+                    <p>The client required a dynamic interface for tracking and managing solar installation projects, with real-time updates and a user-friendly design.</p>
 
                     <h2>Solution</h2>
-                    <p>Utilizing HTML, CSS, and JavaScript, I developed a responsive, interactive dashboard that allows real-time project monitoring. The site features project status tracking, customer feedback integration, and a sleek interface designed for both desktop and mobile experiences.</p>
+                    <p>Utilizing HTML, CSS, and JavaScript, I developed a responsive, interactive dashboard that allows real-time project monitoring.</p>
 
                     <h2>What's Next</h2>
-                    <p>Future enhancements include integration with solar energy monitoring systems, customer feedback analytics, and additional interactive tools for optimizing project timelines.</p>
+                    <p>Future enhancements include integration with solar energy monitoring systems and customer feedback analytics.</p>
                 </div>
 
-                <!-- Instruction text below the image -->
                 <p class="click-instruction">Click on the image for an enlarged view.</p>
 
-                <!-- Code tags and start date under the main display area -->
                 <div class="tags-container">
                     <span class="start-date">Started: November 2024</span>
                     <div class="code-tags">
@@ -320,21 +303,17 @@
             </div>
         </div>
 
-        <!-- Centered Back to Projects button -->
         <a href="projects.html" class="back-to-projects-btn">Back to Projects</a>
     </div>
 
     <script>
-        // Ensure the overlay is hidden initially
         document.getElementById('infoOverlay').style.display = 'none';
 
-        // Toggle the visibility of the overlay
         function toggleOverlay() {
             const overlay = document.getElementById('infoOverlay');
             overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
         }
 
-        // Function to replace the main image with the clicked thumbnail
         function changeImage(imageSrc) {
             const mainImage = document.getElementById('mainImage');
             const imageLink = document.getElementById('imageLink');
@@ -346,14 +325,17 @@
             document.getElementById('mainVideo').style.display = 'none';
         }
 
-        // Function to display the video in the main display area
         function changeToVideo() {
             document.getElementById('mainImage').style.display = 'none';
-            document.getElementById('mainVideo').style.display = 'block';
-            document.getElementById('mainVideo').play();
+            const mainVideo = document.getElementById('mainVideo');
+            mainVideo.style.display = 'block';
+            mainVideo.play();
         }
+
+        setTimeout(() => {
+            document.getElementById('tooltip').style.display = 'none';
+        }, 8000);
     </script>
 </body>
 </html>
-
 

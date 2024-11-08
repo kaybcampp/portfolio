@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <link rel="stylesheet" href="backend.css">
     <style>
         /* Greyscale matrix background */
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
         }
@@ -107,10 +109,39 @@
             transform: scale(1.05);
         }
 
+        /* Speech bubble pointing at the info icon */
+        .message-bubble {
+            position: absolute;
+            top: 130px;
+            right: 45px;
+            padding: 10px 15px;
+            background: rgba(0, 255, 0, 0.9);
+            color: black;
+            font-size: 0.9em;
+            border-radius: 10px;
+            white-space: nowrap;
+            z-index: 5;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Triangle pointing to the info icon to complete the speech bubble */
+        .message-bubble::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0, 255, 0, 0.9);
+        }
+
         /* Information icon with constant glow effect, styled as a circle */
         .info-icon {
             position: absolute;
-            top: 155px;
+            top: 140px;
             right: 10px;
             font-size: 14px;
             color: #00ff00;
@@ -127,15 +158,17 @@
         }
 
         @keyframes glow {
-            0%, 100% {
+            0%,
+            100% {
                 box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
             }
+
             50% {
                 box-shadow: 0 0 15px 4px #00ff00, 0 0 20px 6px #00ff00;
             }
         }
 
-        /* Overlay for Problem, Solution, and What's Next */
+        /* Overlay styling for Problem, Solution, and What's Next */
         .overlay {
             display: none;
             position: absolute;
@@ -143,23 +176,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: 20px;
+            padding: 30px 20px;
             border-radius: 10px;
             overflow-y: auto;
             z-index: 10;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .overlay h2 {
             color: #00ff00;
             margin-top: 15px;
+            font-size: 1.5em;
+            text-align: center;
         }
 
         .overlay p {
             color: #ccc;
-            font-size: 1em;
-            margin-top: 10px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 10px 0;
+            max-width: 90%;
+            text-align: justify;
         }
 
         /* Close button inside overlay */
@@ -186,26 +228,9 @@
             align-items: center;
             margin-top: 10px;
         }
-
-        /* Back to Projects button styling */
-        .back-to-projects-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #00ff00;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .back-to-projects-btn:hover {
-            background-color: #00cc00;
-        }
     </style>
 </head>
+
 <body>
     <div class="project-container">
         <!-- Navigation buttons inside the black container -->
@@ -235,6 +260,9 @@
                     <img id="mainImage" src="images/productsTN.png" alt="Main Display Image">
                 </a>
 
+                <!-- Tooltip message bubble -->
+                <div class="message-bubble" id="tooltip">Click for details about this project</div>
+
                 <!-- Information icon -->
                 <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
 
@@ -242,13 +270,15 @@
                 <div class="overlay" id="infoOverlay">
                     <span class="close-overlay" onclick="toggleOverlay()">✖</span>
                     <h2>Problem</h2>
-                    <p>The client, a small business owner, needed a fully functional marketplace that could be accessed via Telegram, with an intuitive shopping experience for customers. The bot required a comprehensive menu, organized product categories, add-to-cart functionality, and payment integration.</p>
+                    <p>The client, a small business owner, needed a fully functional marketplace accessible via
+                        Telegram, with an intuitive shopping experience for customers.</p>
 
                     <h2>Solution</h2>
-                    <p>To meet these needs, I developed a Telegram bot using Python and the Telegram API. The bot features a welcoming interface with a message guiding users through its functionality. Products are categorized for easy navigation, with detailed descriptions and prices displayed. The add-to-cart function accurately updates item quantities and the total balance, creating a seamless shopping experience.</p>
+                    <p>I developed a Telegram bot using Python and the Telegram API with a comprehensive menu, organized
+                        product categories, add-to-cart functionality, and payment integration.</p>
 
                     <h2>What's Next</h2>
-                    <p>The project awaits the client's company logos and their preferred payment integration method to finalize the shopping and checkout experience.</p>
+                    <p>The project awaits the client's company logos and preferred payment integration method to finalize the checkout experience.</p>
                 </div>
 
                 <!-- Instruction text below the image -->
@@ -284,11 +314,17 @@
         function changeImage(imageSrc) {
             const mainImage = document.getElementById('mainImage');
             const imageLink = document.getElementById('imageLink');
-            
+
             mainImage.src = imageSrc;
             imageLink.href = imageSrc;
             mainImage.style.display = 'block';
         }
+
+        // Hide the tooltip after 5 seconds
+        setTimeout(() => {
+            document.getElementById('tooltip').style.display = 'none';
+        }, 5000);
     </script>
 </body>
+
 </html>
