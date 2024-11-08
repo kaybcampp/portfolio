@@ -68,60 +68,75 @@
             justify-content: center;
         }
 
-        /* Each project item box with increased height and width */
+        /* Each project item box with fixed height */
         .carousel-item {
-            flex: 0 0 45%; /* Adjust width to show two items at a time */
+            flex: 0 0 45%;
             background-color: #333;
-            padding: 20px; /* Increased padding for more space */
+            padding: 20px;
             border-radius: 8px;
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: start;
+            height: 460px;
             box-sizing: border-box;
-            height: 450px; /* Increased height to ensure "View More" button visibility */
+            position: relative;
         }
 
-        /* Project image with increased size */
+        /* Project image */
         .project-screenshot {
             width: 100%;
-            height: 250px; /* Increased height for larger image display */
+            height: 200px;
             object-fit: cover;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Reduce margin between image and text */
         }
 
-        /* Project description */
+        /* Project title */
+        .carousel-item h3 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin: 10px 0 5px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Project description positioned directly below the image */
         .carousel-item p {
             color: #ccc;
-            font-size: 1em; /* Increased font size for better readability */
-            margin: 10px 0;
+            font-size: 0.95em;
             text-align: center;
-            flex-grow: 1; /* Allows description to expand and create space for the button */
+            margin: 5px 0 15px 0; /* Minimal space around the text */
+            flex-grow: 0;
         }
 
-        /* "View More" button for each project */
+        /* "View More" button positioned at the bottom */
         .cta-button.project-button {
             background-color: #00ff00;
             color: black;
-            padding: 10px 15px; /* Increased padding for a better button size */
-            font-size: 1em; /* Increased font size for readability */
+            padding: 10px 15px;
+            font-size: 1em;
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
-            margin-top: 10px;
             display: inline-block;
+            margin-top: auto; /* Pushes the button to the bottom */
         }
 
         .cta-button.project-button:hover {
             background-color: #00cc00;
         }
+
+        /* Additional green text below the carousel */
+        .note {
+            color: #00ff00;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <!-- Main black container for the Projects section -->
     <div class="projects-container">
-        <!-- Navigation buttons inside the black container -->
         <div class="nav-buttons">
             <a href="index.html" class="nav-button">Home</a>
             <a href="projects.html" class="nav-button">Projects</a>
@@ -133,7 +148,6 @@
             <h2>Operations</h2>
         </header>
 
-        <!-- Carousel container for project items -->
         <div class="carousel-container">
             <button id="leftArrow" class="carousel-button" onclick="showPrevious()">&#9664;</button>
             <div class="carousel">
@@ -141,43 +155,48 @@
                     <h3>Operation Stone</h3>
                     <img src="images/crmDataPull.png" alt="Screenshot of Operation Stone" class="project-screenshot">
                     <p>A secure and scalable platform for data management, designed to handle high volumes while maintaining accessibility.</p>
-                    <a href="operation-stone.html" class="cta-button">View More</a>
+                    <a href="operation-stone.html" class="cta-button project-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation B C</h3>
                     <img src="images/productsTN.png" alt="Screenshot of Operation B C" class="project-screenshot">
                     <p>An ecommerce integration tool that simplifies product listing, inventory tracking, and order processing for small businesses.</p>
-                    <a href="operation-bc.html" class="cta-button">View More</a>
+                    <a href="operation-bc.html" class="cta-button project-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation Pokegang</h3>
                     <img src="images/pokeDex2.png" alt="Screenshot of Operation Pokegang" class="project-screenshot">
                     <p>A Pokémon fusion generator that allows users to combine various Pokémon, creating unique and personalized designs.</p>
-                    <a href="operation-pokegang.html" class="cta-button">View More</a>
+                    <a href="operation-pokegang.html" class="cta-button project-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation DTH</h3>
                     <img src="images/mainLogo.png" alt="Screenshot of Operation DTH" class="project-screenshot">
                     <p>Ecommerce website, designed for showcasing products, portfolios, and project updates with a unique aesthetic.</p>
-                    <a href="operation-DTH.html" class="cta-button">View More</a>
+                    <a href="operation-DTH.html" class="cta-button project-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation Res302</h3>
                     <img src="images/302logo1.png" alt="Screenshot of Operation Res302" class="project-screenshot">
-                    <p>A realestate site, showcasing listings, agent information, and more in a modern format.</p>
-                    <a href="operation-res302.html" class="cta-button">View More</a>
+                    <p>A real estate site showcasing listings, agent information, and more in a modern format.</p>
+                    <a href="operation-res302.html" class="cta-button project-button">View More</a>
                 </div>
                 <div class="carousel-item">
                     <h3>Operation Sunnymac</h3>
                     <img src="images/estimator.png" alt="Screenshot of Operation Sunnymac" class="project-screenshot">
                     <p>A tool that estimates solar panel requirements based on roof size, home type, and electricity consumption.</p>
-                    <a href="operation-sunnymac.html" class="cta-button">View More</a>
+                    <a href="operation-sunnymac.html" class="cta-button project-button">View More</a>
                 </div>
             </div>
             <button id="rightArrow" class="carousel-button" onclick="showNext()">&#9654;</button>
         </div>
+
+        <!-- Note text below carousel -->
+        <p class="note">Operation Stone and Operation B C consist of heavy back-end logic, so their photos are limited! Thanks for visiting!</p>
     </div>
 
-    <script src="script.js"></script> <!-- JavaScript for basic carousel -->
+    <script src="script.js"></script>
 </body>
 </html>
+
+
