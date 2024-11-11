@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation MindWave - Project Details</title>
+    <link rel="stylesheet" href="backend.css">
+    <style>
+        /* Background and container styling */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
+            filter: grayscale(100%);
+            z-index: -1;
+        }
+
+        /* Centered project container */
+        .project-container {
+            max-width: 700px;
+            width: 90%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Navigation buttons styling */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .nav-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Gallery and hover styling */
+        .gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gallery-display img,
+        .gallery-display video {
+            width: 100%;
+            max-width: 600px;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgba(0, 255, 0, 0.3);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gallery-display img:hover,
+        .gallery-display video:hover {
+            background-color: rgba(0, 255, 0, 0.5);
+            border-color: rgba(0, 255, 0, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Thumbnail images with green highlight effect */
+        .gallery-thumbnails img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(0, 255, 0, 0.3);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        .gallery-thumbnails img:hover {
+            background-color: rgba(0, 255, 0, 0.5);
+            border-color: rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Play button overlay for video thumbnail only */
+        .video-thumbnail {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .video-thumbnail .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #00ff00;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        /* Tooltip message bubble */
+        .message-bubble {
+            position: absolute;
+            top: 140px;
+            right: 45px;
+            padding: 10px 15px;
+            background: rgba(0, 255, 0, 0.9);
+            color: black;
+            font-size: 0.9em;
+            border-radius: 10px;
+            white-space: nowrap;
+            z-index: 5;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Information icon with constant glow effect */
+        .info-icon {
+            position: absolute;
+            top: 155px;
+            right: 10px;
+            font-size: 14px;
+            color: #00ff00;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px 2px #00ff00, 0 0 15px 4px #00ff00;
+        }
+
+        /* Full-page overlay for Problem, Solution, and What's Next */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            overflow-y: auto;
+            z-index: 10;
+            padding: 40px;
+            text-align: left;
+        }
+
+        .overlay h2 {
+            color: #00ff00;
+            margin-top: 15px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .overlay p {
+            color: #ccc;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 15px 0;
+            max-width: 90%;
+            text-align: justify;
+        }
+
+        /* Close button inside overlay */
+        .close-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #00ff00;
+            cursor: pointer;
+        }
+
+        /* Tags and start date below instruction text */
+        .tags-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="projects.html" class="nav-button">Projects</a>
+            <a href="skills.html" class="nav-button">Skills</a>
+            <a href="contact.html" class="nav-button">Contact</a>
+        </div>
+
+        <header>
+            <h1>Operation MindWave</h1>
+        </header>
+
+        <div class="gallery">
+            <div class="gallery-thumbnails">
+                <img src="images/learnMW.png" alt="Learn Page Thumbnail" onclick="changeImage('images/learnMW.png')">
+                <img src="images/loginMW.png" alt="Login Page Thumbnail" onclick="changeImage('images/loginMW.png')">
+                <img src="images/chatMW.png" alt="Chat Page Thumbnail" onclick="changeImage('images/chatMW.png')">
+                <img src="images/notesMW.png" alt="Notes Page Thumbnail" onclick="changeImage('images/notesMW.png')">
+                <img src="images/settingsMW.png" alt="Settings Page Thumbnail" onclick="changeImage('images/settingsMW.png')">
+                <div class="video-thumbnail" onclick="changeToVideo()">
+                    <img src="images/learnMW.png" alt="Home Animation Video Thumbnail">
+                    <span class="play-button">&#9658;</span>
+                </div>
+            </div>
+
+            <div class="gallery-display">
+                <a id="imageLink" href="images/learnMW.png" target="_blank">
+                    <img id="mainImage" src="images/learnMW.png" alt="Main Display Image">
+                </a>
+
+                <video id="mainVideo" controls style="display: none;">
+                    <source src="images/homeAnimationMind.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <div class="message-bubble" id="tooltip">Click for details about this project</div>
+                <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
+
+                <div class="overlay" id="infoOverlay">
+                    <span class="close-overlay" onclick="toggleOverlay()">✖</span>
+                    <h2>Problem</h2>
+                    <p>Users need a mental wellness tool that integrates interactive features to manage tasks, track progress, and communicate with an AI wellness assistant.</p>
+
+                    <h2>Solution</h2>
+                    <p>MindWave offers a gamified wellness app with task management, milestone tracking, and chat functionalities, enhanced by an AI assistant.</p>
+
+                    <h2>What's Next</h2>
+                    <p>Upcoming updates will introduce more AI-driven insights, personalized habit recommendations, and refined user interface animations for a seamless experience.</p>
+                </div>
+
+                <p class="click-instruction" style="color: #00ff00;">Click on the image for an enlarged view.</p>
+
+                <div class="tags-container">
+                    <span class="start-date">Started: November 2024</span>
+                    <div class="code-tags">
+                        <span class="tag html">HTML</span>
+                        <span class="tag css">CSS</span>
+                        <span class="tag javascript">JavaScript</span>
+                        <span class="tag react">React</span>
+                        <span class="tag spring-boot">Spring Boot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="projects.html" class="back-to-projects-btn">Back to Projects</a>
+    </div>
+
+    <script>
+        function toggleOverlay() {
+            const overlay = document.getElementById('infoOverlay');
+            overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
+        }
+
+        function changeImage(imageSrc) {
+            const mainImage = document.getElementById('mainImage');
+            const imageLink = document.getElementById('imageLink');
+            
+            mainImage.src = imageSrc;
+            imageLink.href = imageSrc;
+
+            mainImage.style.display = 'block';
+            document.getElementById('mainVideo').style.display = 'none';
+        }
+
+        function changeToVideo() {
+            document.getElementById('mainImage').style.display = 'none';
+            const mainVideo = document.getElementById('mainVideo');
+            mainVideo.style.display = 'block';
+            mainVideo.play();
+        }
+
+        setTimeout(() => {
+            document.getElementById('tooltip').style.display = 'none';
+        }, 8000);
+    </script>
+</body>
+</html>
