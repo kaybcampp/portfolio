@@ -5,6 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Kayb Campbell</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for contact container */
+        .contact-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            min-height: 100vh; /* Center vertically */
+            justify-content: center;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .nav-button {
+            background-color: #00ff00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Section headers */
+        header h2,
+        h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        /* Timeline styling */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .timeline li {
+            margin-bottom: 10px;
+        }
+
+        .timeline strong {
+            color: #00ff00;
+        }
+
+        /* Contact links styling */
+        .contact-link {
+            color: #00ff00;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .contact-link:hover {
+            color: #00cc00;
+        }
+
+        /* Contact form */
+        .contact-form-section form input,
+        .contact-form-section form textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        .contact-form-section button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form-section button:hover {
+            background-color: #00cc00;
+        }
+    </style>
 </head>
 <body>
     <!-- Centered container with menu and about info -->
@@ -46,7 +148,6 @@
         <!-- Contact Form -->
         <section class="contact-form-section">
             <p>Or send me a direct message here:</p>
-            <!-- Replace "YOUR_FORMSPREE_URL" with your actual Formspree endpoint URL -->
             <form action="https://formspree.io/f/mrbgqwln" method="POST">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
@@ -57,4 +158,5 @@
     </div>
 </body>
 </html>
+
 

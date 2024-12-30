@@ -3,200 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operations - Kayb Campbell</title>
+    <title>Projects - Kayb Campbell</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Centered navigation buttons container styling */
-        .nav-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .nav-button {
-            background-color: #00ff00;
-            color: black;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .nav-button:hover {
-            background-color: #00cc00;
-        }
-
-        /* Styling for the projects container */
-        .projects-container {
-            max-width: 800px;
-            width: 90%;
-            margin: auto;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-        }
-
-        header h2 {
-            color: #00ff00;
-        }
-
-        /* Carousel navigation buttons */
-        .carousel-button {
-            background: none;
-            border: none;
-            font-size: 2em;
-            color: #00ff00;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .carousel-button:hover {
-            color: #00cc00;
-        }
-
-        /* Carousel and carousel item styling */
-        .carousel {
-            display: flex;
-            overflow: hidden;
-            gap: 15px;
-            padding: 20px;
-            justify-content: center;
-        }
-
-        /* Each project item box with fixed height */
-        .carousel-item {
-            flex: 0 0 45%;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: start;
-            height: 460px;
-            box-sizing: border-box;
+        .video-container {
             position: relative;
-        }
-
-        /* Project image */
-        .project-screenshot {
             width: 100%;
-            height: 200px;
+            height: 280px; /* Large enough for good visibility */
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .project-screenshot,
+        .project-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px; /* Reduce margin between image and text */
+            transition: opacity 0.3s ease-in-out;
         }
 
-        /* Project title */
-        .carousel-item h3 {
-            color: #00ff00;
-            font-size: 1.2em;
-            margin: 10px 0 5px 0;
-            text-transform: uppercase;
-            font-weight: bold;
+        .project-video {
+            opacity: 0; /* Hidden by default */
+            pointer-events: none; /* Ensures it doesn't interfere with hover detection */
         }
 
-        /* Project description positioned directly below the image */
-        .carousel-item p {
-            color: #ccc;
-            font-size: 0.95em;
-            text-align: center;
-            margin: 5px 0 15px 0; /* Minimal space around the text */
-            flex-grow: 0;
+        .video-container.video-hover:hover .project-video {
+            opacity: 1; /* Shows the video on hover */
         }
 
-        /* "View More" button positioned at the bottom */
-        .cta-button.project-button {
-            background-color: #00ff00;
-            color: black;
-            padding: 10px 15px;
-            font-size: 1em;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: auto; /* Pushes the button to the bottom */
-        }
-
-        .cta-button.project-button:hover {
-            background-color: #00cc00;
-        }
-
-        /* Additional green text below the carousel */
-        .note {
-            color: #00ff00;
-            font-size: 1.1em;
-            margin-top: 20px;
+        .video-container.video-hover:hover .project-screenshot {
+            opacity: 0; /* Hides the image on hover */
         }
     </style>
 </head>
 <body>
-    <div class="projects-container">
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-button">Home</a>
-            <a href="projects.html" class="nav-button">Projects</a>
-            <a href="skills.html" class="nav-button">Skills</a>
-            <a href="contact.html" class="nav-button">Contact</a>
-        </div>
+    <!-- Navigation -->
+    <div class="menu-bar">
+        <a href="index.html" class="menu-item">Home</a>
+        <a href="projects.html" class="menu-item">Projects</a>
+        <a href="skills.html" class="menu-item">Skills</a>
+        <a href="contact.html" class="menu-item">Contact</a>
+    </div>
 
-        <header>
-            <h2>Operations</h2>
-        </header>
-
-        <div class="carousel-container">
-            <button id="leftArrow" class="carousel-button" onclick="showPrevious()">&#9664;</button>
-            <div class="carousel">
+    <!-- Projects Section -->
+    <div class="content">
+        <div class="projects-container">
+            <header>My Projects</header>
+            <div class="projects-grid">
+                <!-- Operation Stone - No hover effect -->
                 <div class="carousel-item">
                     <h3>Operation Stone</h3>
-                    <img src="images/crmDataPull.png" alt="Screenshot of Operation Stone" class="project-screenshot">
+                    <div class="video-container">
+                        <img src="images/crmDataPull.png" alt="Screenshot of Operation Stone" class="project-screenshot">
+                    </div>
                     <p>A secure and scalable platform for data management, designed to handle high volumes while maintaining accessibility.</p>
                     <a href="operation-stone.html" class="cta-button project-button">View More</a>
                 </div>
+
+                <!-- Operation B C - No hover effect -->
                 <div class="carousel-item">
                     <h3>Operation B C</h3>
-                    <img src="images/productsTN.png" alt="Screenshot of Operation B C" class="project-screenshot">
+                    <div class="video-container">
+                        <img src="images/productsTN.png" alt="Screenshot of Operation B C" class="project-screenshot">
+                    </div>
                     <p>An ecommerce integration tool that simplifies product listing, inventory tracking, and order processing for small businesses.</p>
                     <a href="operation-bc.html" class="cta-button project-button">View More</a>
                 </div>
+
+                <!-- Operation Pokegang -->
                 <div class="carousel-item">
                     <h3>Operation Pokegang</h3>
-                    <img src="images/pokeDex2.png" alt="Screenshot of Operation Pokegang" class="project-screenshot">
+                    <div class="video-container video-hover">
+                        <img src="images/pokeDex2.png" alt="Screenshot of Operation Pokegang" class="project-screenshot">
+                        <video class="project-video" autoplay muted loop>
+                            <source src="images/pokedexvid.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                     <p>A Pokémon fusion generator that allows users to combine various Pokémon, creating unique and personalized designs.</p>
                     <a href="operation-pokegang.html" class="cta-button project-button">View More</a>
                 </div>
+
+                <!-- Operation DTH -->
                 <div class="carousel-item">
                     <h3>Operation DTH</h3>
-                    <img src="images/mainLogo.png" alt="Screenshot of Operation DTH" class="project-screenshot">
-                    <p>Ecommerce website, designed for showcasing products, portfolios, and project updates with a unique aesthetic.</p>
+                    <div class="video-container video-hover">
+                        <img src="images/mainLogo.png" alt="Screenshot of Operation DTH" class="project-screenshot">
+                        <video class="project-video" autoplay muted loop>
+                            <source src="images/dthVid.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p>An ecommerce website, designed for showcasing products, portfolios, and project updates with a unique aesthetic.</p>
                     <a href="operation-DTH.html" class="cta-button project-button">View More</a>
                 </div>
+
+                <!-- Operation Res302 -->
                 <div class="carousel-item">
                     <h3>Operation Res302</h3>
-                    <img src="images/302logo1.png" alt="Screenshot of Operation Res302" class="project-screenshot">
+                    <div class="video-container video-hover">
+                        <img src="images/302logo1.png" alt="Screenshot of Operation Res302" class="project-screenshot">
+                        <video class="project-video" autoplay muted loop>
+                            <source src="images/res302vid1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                     <p>A real estate site showcasing listings, agent information, and more in a modern format.</p>
                     <a href="operation-res302.html" class="cta-button project-button">View More</a>
                 </div>
+
+                <!-- Operation Sunnymac -->
                 <div class="carousel-item">
                     <h3>Operation Sunnymac</h3>
-                    <img src="images/estimator.png" alt="Screenshot of Operation Sunnymac" class="project-screenshot">
+                    <div class="video-container video-hover">
+                        <img src="images/estimator.png" alt="Screenshot of Operation Sunnymac" class="project-screenshot">
+                        <video class="project-video" autoplay muted loop>
+                            <source src="images/sunnymacVid.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                     <p>A tool that estimates solar panel requirements based on roof size, home type, and electricity consumption.</p>
                     <a href="operation-sunnymac.html" class="cta-button project-button">View More</a>
                 </div>
             </div>
-            <button id="rightArrow" class="carousel-button" onclick="showNext()">&#9654;</button>
         </div>
-
-        <!-- Note text below carousel -->
-        <p class="note">Operation Stone and Operation B C consist of heavy back-end logic, so their photos are limited! Thanks for visiting!</p>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
-
 

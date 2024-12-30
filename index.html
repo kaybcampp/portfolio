@@ -38,6 +38,21 @@
             border-radius: 15px;
             text-align: center;
             color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensures it is centered vertically */
+        }
+
+        /* Styling for the headshot */
+        #headshot {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #00ff00;
+            margin-bottom: 20px;
+            object-fit: cover; /* Ensures the image fits perfectly within the circular frame */
         }
 
         .highlight {
@@ -64,6 +79,9 @@
 <body>
     <!-- Semi-translucent overlay block for content -->
     <div class="intro-container">
+        <!-- Headshot -->
+        <img src="images/pfp2.png" alt="Kayb Campbell Headshot" id="headshot">
+
         <!-- Navigation buttons inside the black container -->
         <div class="nav-buttons">
             <a href="index.html" class="nav-button">Home</a>
@@ -78,3 +96,4 @@
     </div>
 </body>
 </html>
+

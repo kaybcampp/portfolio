@@ -63,6 +63,24 @@
             background-color: #00cc00;
         }
 
+        /* Live link button styling */
+        .live-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #00ff00;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .live-link:hover {
+            background-color: #00cc00;
+        }
+
         /* Gallery and hover styling */
         .gallery {
             display: flex;
@@ -91,53 +109,6 @@
             transform: scale(1.02);
         }
 
-        /* Thumbnail images with green highlight effect */
-        .gallery-thumbnails img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: rgba(0, 255, 0, 0.3);
-            border: 2px solid rgba(0, 255, 0, 0.3);
-            transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
-        }
-
-        .gallery-thumbnails img:hover {
-            background-color: rgba(0, 255, 0, 0.5);
-            border-color: rgba(0, 255, 0, 0.5);
-            transform: scale(1.05);
-        }
-
-        /* Play button overlay for video thumbnail only */
-        .video-thumbnail {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            cursor: pointer;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .video-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .video-thumbnail .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            color: #00ff00;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 50%;
-            padding: 5px;
-        }
-
         /* Tooltip message bubble */
         .message-bubble {
             position: absolute;
@@ -150,7 +121,6 @@
             border-radius: 10px;
             white-space: nowrap;
             z-index: 5;
-            display: inline-block;
             text-align: left;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -167,7 +137,7 @@
             border-color: transparent transparent transparent rgba(0, 255, 0, 0.9);
         }
 
-        /* Information icon with constant glow effect */
+        /* Information icon */
         .info-icon {
             position: absolute;
             top: 155px;
@@ -186,7 +156,7 @@
             animation: glow 2s infinite;
         }
 
-        /* Overlay for Problem, Solution, and What's Next */
+        /* Overlay for details */
         .overlay {
             display: none;
             position: absolute;
@@ -223,7 +193,6 @@
             text-align: justify;
         }
 
-        /* Close button inside overlay */
         .close-overlay {
             position: absolute;
             top: 20px;
@@ -233,13 +202,13 @@
             cursor: pointer;
         }
 
-        /* Tags and start date below instruction text */
+        /* Spacing adjustments */
         .tags-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-            color: white;
+            margin-bottom: 20px;
+        }
+
+        .back-to-projects-btn {
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -256,56 +225,43 @@
             <h1>Operation DTH (DracosTrapHouse)</h1>
         </header>
 
+        <!-- Live link -->
+        <a href="https://www.dracostraphouse.com" target="_blank" class="live-link">Visit DracosTrapHouse.com</a>
+
         <div class="gallery">
-            <div class="gallery-thumbnails">
-                <img src="images/dthHome.png" alt="Home Page Thumbnail" onclick="changeImage('images/dthHome.png')">
-                <img src="images/dthShop.png" alt="About Us Page Thumbnail" onclick="changeImage('images/dthShop.png')">
-                <img src="images/dthDevs.png" alt="Contact Us Page Thumbnail" onclick="changeImage('images/dthDevs.png')">
-                <div class="video-thumbnail" onclick="changeToVideo()">
-                    <img src="images/mainLogo.png" alt="Live Demo Video Thumbnail">
-                    <span class="play-button">&#9658;</span>
-                </div>
-            </div>
-
             <div class="gallery-display">
-                <a id="imageLink" href="images/dthHome.png" target="_blank">
-                    <img id="mainImage" src="images/dthHome.png" alt="Main Display Image">
-                </a>
-
+                <img id="mainImage" src="images/dthHome.png" alt="Main Display Image">
                 <video id="mainVideo" controls style="display: none;">
-                    <source src="images/dthVid.mp4" type="video/mp4">
+                    <source src="videos/dthVid.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-
                 <div class="message-bubble" id="tooltip">Click for details about this project</div>
                 <span class="info-icon" onclick="toggleOverlay()">ℹ️</span>
-
-                <div class="overlay" id="infoOverlay">
-                    <span class="close-overlay" onclick="toggleOverlay()">✖</span>
-                    <h2>Problem</h2>
-                    <p>The client needed a custom e-commerce website for DracosTrapHouse, designed to showcase products, portfolios, and project updates with a unique, tech-savvy aesthetic.</p>
-
-                    <h2>Solution</h2>
-                    <p>I built a sleek, dark-themed website with a Matrix-inspired aesthetic using HTML, CSS, and JavaScript.</p>
-
-                    <h2>What's Next</h2>
-                    <p>Upcoming updates include additional product features, refined animations, and real-time analytics for user engagement tracking.</p>
-                </div>
-
-                <p class="click-instruction">Click on the image for an enlarged view.</p>
-
-                <div class="tags-container">
-                    <span class="start-date">Started: January 2024</span>
-                    <div class="code-tags">
-                        <span class="tag html">HTML</span>
-                        <span class="tag css">CSS</span>
-                        <span class="tag javascript">JavaScript</span>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <a href="projects.html" class="back-to-projects-btn">Back to Projects</a>
+        <div class="tags-container">
+            <span class="start-date">Started: January 2024</span>
+            <div class="code-tags">
+                <span class="tag html">HTML</span>
+                <span class="tag css">CSS</span>
+                <span class="tag javascript">JavaScript</span>
+            </div>
+        </div>
+
+        <a href="projects.html" class="back-to-projects-btn nav-button">Back to Projects</a>
+
+        <div class="overlay" id="infoOverlay">
+            <span class="close-overlay" onclick="toggleOverlay()">✖</span>
+            <h2>Problem</h2>
+            <p>The client needed a custom e-commerce website for DracosTrapHouse, designed to showcase products, portfolios, and project updates with a unique, tech-savvy aesthetic.</p>
+
+            <h2>Solution</h2>
+            <p>I built a sleek, dark-themed website with a Matrix-inspired aesthetic using HTML, CSS, and JavaScript.</p>
+
+            <h2>What's Next</h2>
+            <p>Upcoming updates include additional product features, refined animations, and real-time analytics for user engagement tracking.</p>
+        </div>
     </div>
 
     <script>
@@ -316,27 +272,11 @@
             overlay.style.display = overlay.style.display === 'none' || overlay.style.display === '' ? 'flex' : 'none';
         }
 
-        function changeImage(imageSrc) {
-            const mainImage = document.getElementById('mainImage');
-            const imageLink = document.getElementById('imageLink');
-            
-            mainImage.src = imageSrc;
-            imageLink.href = imageSrc;
-
-            mainImage.style.display = 'block';
-            document.getElementById('mainVideo').style.display = 'none';
-        }
-
-        function changeToVideo() {
-            document.getElementById('mainImage').style.display = 'none';
-            const mainVideo = document.getElementById('mainVideo');
-            mainVideo.style.display = 'block';
-            mainVideo.play();
-        }
-
         setTimeout(() => {
             document.getElementById('tooltip').style.display = 'none';
         }, 8000);
     </script>
 </body>
 </html>
+
+
