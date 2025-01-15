@@ -3,97 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayb Campbell - Portfolio</title>
+    <title>Kayb's Futuristic Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Centered navigation buttons container styling */
-        .nav-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .nav-button {
-            background-color: #00ff00;
-            color: black;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .nav-button:hover {
-            background-color: #00cc00;
-        }
-
-        /* Styling for the intro container */
-        .intro-container {
-            max-width: 700px;
-            margin: auto;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh; /* Ensures it is centered vertically */
-        }
-
-        /* Styling for the headshot */
-        #headshot {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid #00ff00;
-            margin-bottom: 20px;
-            object-fit: cover; /* Ensures the image fits perfectly within the circular frame */
-        }
-
-        .highlight {
-            color: #00ff00;
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #00ff00;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #00cc00;
-        }
-    </style>
 </head>
 <body>
-    <!-- Semi-translucent overlay block for content -->
-    <div class="intro-container">
-        <!-- Headshot -->
-        <img src="images/pfp2.png" alt="Kayb Campbell Headshot" id="headshot">
-
-        <!-- Navigation buttons inside the black container -->
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-button">Home</a>
-            <a href="projects.html" class="nav-button">Projects</a>
-            <a href="skills.html" class="nav-button">Skills</a>
-            <a href="contact.html" class="nav-button">Contact</a>
+    <header class="hero">
+        <div class="dynamic-shape"></div>
+        <div class="container">
+            <img src="images/pfp2.png" alt="Kayb's Headshot" class="headshot">
+            <h1>Kaybriana "Kayb" Campbell</h1>
+            <p>Innovative Developer | Passionate Technologist | Future-Driven Problem Solver</p>
         </div>
+    </header>
 
-        <h1 id="intro-text">Hi, I'm <span class="highlight">Kayb Campbell</span></h1>
-        <p class="subtext">Exploring the art of code, for the love of creating something elegantly unseen.</p>
-        <a href="projects.html" class="cta-button">View My Work</a>
+    <main>
+        <!-- About Me Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2>About Me & Skills</h2>
+                <p>
+                    Hi, I'm Kayb—a driven developer with 4+ years of coding experience and a deep passion for technology.
+                    I started a sneaker reselling business, MOAK (Mother of All Kicks), in high school and later majored
+                    in Business Management with a minor in Psychology at the University of Tampa in 2019. Despite securing
+                    a consistent spot on the Dean's List, financial struggles forced me to exit after 3 semesters. Since then,
+                    I've worked at various Amazon warehouse locations while rekindling my love for technology. Self-taught and
+                    motivated, I honed my coding skills, freelanced for projects, and even gained admission to the prestigious
+                    App Academy coding bootcamp. Today, I’m proud to merge my passion for innovation with my problem-solving
+                    expertise to deliver impactful solutions.
+                </p>
+                <div class="skills">
+                    <div class="skill-bubble js">JavaScript - 4 yrs</div>
+                    <div class="skill-bubble python">Python - 3 yrs</div>
+                    <div class="skill-bubble react">React - 2 yrs</div>
+                    <div class="skill-bubble spring-boot">Spring Boot - 1 yr</div>
+                    <div class="skill-bubble html">HTML - 4 yrs</div>
+                    <div class="skill-bubble css">CSS - 4 yrs</div>
+                    <div class="skill-bubble java">Java - 1 yr</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills and Certifications Section -->
+        <section class="certifications" id="certifications">
+            <div class="container">
+                <h2>Certifications</h2>
+                <p>Here are some certifications that demonstrate my continuous commitment to learning and growing:</p>
+                <div class="cert-gallery">
+                    <a href="https://coursera.org/share/83da13f7f355e1535bd3db0b728e28e3" target="_blank">
+                        <img src="images/cloudComputation_page-0001.jpg" alt="Introduction to Cloud Computation">
+                    </a>
+                    <a href="https://coursera.org/share/559408a23ad6f6c126da71dc514c3679" target="_blank">
+                        <img src="images/gitGithub_page-0001.jpg" alt="Getting Started with Git & GitHub">
+                    </a>
+                    <a href="https://coursera.org/share/26bb8443b1b49fdcc13d9225272409db" target="_blank">
+                        <img src="images/webDev_page-0001.jpg" alt="Introduction to Web Development with HTML, CSS, and JavaScript">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <p style="text-align: center; color: #00d1ff;">Click on the video previews below to view more details about each project!</p>
+                <div class="project-gallery">
+                    <div class="project">
+                        <a href="https://www.dracostraphouse.com" target="_blank">
+                            <video src="images/video.dth.mp4" muted autoplay loop></video>
+                        </a>
+                        <h3>DracosTrapHouse</h3>
+                        <p>Matrix-inspired e-commerce platform showcasing innovative and trendy products.</p>
+                        <div class="project-skills">
+                            <span class="skill-bubble html">HTML</span>
+                            <span class="skill-bubble css">CSS</span>
+                            <span class="skill-bubble js">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video src="images/dracoCodesvid1.mp4" muted autoplay loop onclick="openPopup('images/dracoCodesvid1.mp4')"></video>
+                        <h3>DracoCodes</h3>
+                        <p>A fast and reliable coding services site built with precision and quality in mind.</p>
+                        <div class="project-skills">
+                            <span class="skill-bubble react">React</span>
+                            <span class="skill-bubble css">CSS</span>
+                            <span class="skill-bubble js">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video src="images/RESvid.mp4" muted autoplay loop onclick="openPopup('images/RESvid.mp4')"></video>
+                        <h3>Res302</h3>
+                        <p>A real estate solutions website for exclusive, elegant, and curated properties in Delaware.</p>
+                        <div class="project-skills">
+                            <span class="skill-bubble html">HTML</span>
+                            <span class="skill-bubble css">CSS</span>
+                            <span class="skill-bubble js">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video src="images/mwVid.mp4" muted autoplay loop onclick="openPopup('images/mwVid.mp4')"></video>
+                        <h3>MindWave</h3>
+                        <p>A gamified wellness app focusing on mental health with integrated AI assistance.</p>
+                        <div class="project-skills">
+                            <span class="skill-bubble react">React</span>
+                            <span class="skill-bubble spring-boot">Spring Boot</span>
+                            <span class="skill-bubble js">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <video src="images/pokedexvid.mp4" muted autoplay loop onclick="openPopup('images/pokedexvid.mp4')"></video>
+                        <h3>Pokedex</h3>
+                        <p>A fully interactive Pokémon database with sleek UI and fast search functionality.</p>
+                        <div class="project-skills">
+                            <span class="skill-bubble react">React</span>
+                            <span class="skill-bubble css">CSS</span>
+                            <span class="skill-bubble js">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <p>Let's create something amazing together! Reach out below:</p>
+                <form action="https://formspree.io/f/mrbgqwln" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Kayb Campbell | <a href="#about">About</a> | <a href="#projects">Projects</a> | <a href="#certifications">Certifications</a> | <a href="#contact">Contact</a></p>
+    </footer>
+
+    <div class="overlay" id="popupOverlay" onclick="closePopup()"></div>
+    <div class="video-popup" id="videoPopup">
+        <button class="close-btn" onclick="closePopup()">X</button>
+        <video controls autoplay id="popupVideo"></video>
     </div>
+
+    <script>
+        function openPopup(videoSrc) {
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('videoPopup').style.display = 'block';
+            document.getElementById('popupVideo').src = videoSrc;
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('videoPopup').style.display = 'none';
+            document.getElementById('popupVideo').src = '';
+        }
+    </script>
 </body>
 </html>
-

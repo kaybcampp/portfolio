@@ -1,162 +1,355 @@
-/* General reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Menu bar styling */
-.menu-bar {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.menu-item, .nav-button {
-    background-color: #00ff00;
-    color: black;
-    padding: 8px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1em;
-    margin: 0 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.menu-item:hover, .nav-button:hover {
-    background-color: #00cc00;
-    color: white;
-}
-
-/* Content container to avoid menu overlap */
-.content {
-    padding-top: 80px; /* Ensures no overlap with the menu bar */
-}
-
-/* General body setup */
+/* General Styles */
 body {
-    min-height: 100vh;
-    padding: 0;
     margin: 0;
-    overflow-y: auto; /* Enables vertical scrolling */
-    background: #000; /* Background color for the body */
-    color: white;
-    position: relative; /* Ensures pseudo-element positioning */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background: #0a0f2c;
+    overflow-x: hidden;
 }
 
-/* Matrix background styling with greyscale applied only to the background */
-body::before {
-    content: "";
-    position: fixed; /* Covers viewport and scrolls seamlessly */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Stretches to cover the entire page */
-    background: url('https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif') repeat;
-    filter: grayscale(100%);
-    z-index: -1; /* Ensures it stays behind all other content */
-}
-
-/* Container for projects section */
-.projects-container {
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
+.container {
     width: 90%;
     max-width: 1200px;
-    margin: 20px auto;
-    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Header styling */
-header {
-    color: #00ff00;
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    background: #001a44;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    color: #ffffff;
+}
+
+.hero .headshot {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     margin-bottom: 20px;
-    font-size: 2em;
+    border: 4px solid #007bff;
+    object-fit: cover;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #00d1ff;
+    text-shadow: 0 0 10px #007bff, 0 0 20px #00d1ff;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* About Section */
+.about {
+    padding: 80px 20px;
+    background: #0f1c3f;
     text-align: center;
 }
 
-/* Projects grid layout */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    width: 100%;
-}
-
-/* Each project item box */
-.carousel-item {
-    background-color: #333;
-    padding: 15px; /* Reduced padding to make more space for the image */
-    border-radius: 8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Ensure content stays at the top */
-    box-sizing: border-box;
-    min-height: 550px; /* Adjusted height for content and button spacing */
+.about h2 {
+    color: #00d1ff;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
     position: relative;
 }
 
-/* Project image */
-.project-screenshot {
-    width: 100%;
-    height: 280px; /* Increased height for better visibility */
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px; /* Reduced margin to allocate more space for the image */
+.about h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #00d1ff;
+    margin: 10px auto;
+    border-radius: 2px;
 }
 
-/* Project title */
-.carousel-item h3 {
-    color: #00ff00;
-    font-size: 1.4em;
-    margin: 10px 0;
-    text-transform: uppercase;
-    font-weight: bold;
+.about p {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    font-size: 1.2rem;
 }
 
-/* Project description */
-.carousel-item p {
-    color: #ccc;
-    font-size: 1em;
-    margin-bottom: 20px;
+/* Skill Bubbles */
+.skills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-bubble {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #fff;
     text-align: center;
-    line-height: 1.5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* "View More" button */
-.cta-button.project-button {
-    background-color: #00ff00;
-    color: black;
-    padding: 10px 15px;
-    font-size: 1em;
-    text-decoration: none;
-    font-weight: bold;
+.skill-bubble:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Individual Skill Colors */
+.skill-bubble.js {
+    background: #f7df1e;
+    color: #000;
+}
+
+.skill-bubble.python {
+    background: #3776ab;
+}
+
+.skill-bubble.react {
+    background: #61dafb;
+    color: #000;
+}
+
+.skill-bubble.spring-boot {
+    background: #6db33f;
+}
+
+.skill-bubble.html {
+    background: #e34f26;
+}
+
+.skill-bubble.css {
+    background: #264de4;
+}
+
+.skill-bubble.java {
+    background: #b07219;
+}
+
+/* Certifications Section */
+.certifications {
+    padding: 80px 20px;
+    background: #0f1c3f;
+    text-align: center;
+}
+
+.certifications h2 {
+    color: #00d1ff;
+    margin-bottom: 20px;
+}
+
+.cert-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cert-gallery a img {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-gallery a img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 255, 0, 0.5);
+}
+
+/* Projects Section */
+.projects {
+    padding: 80px 20px;
+    background: #001a44;
+}
+
+.projects h2 {
+    color: #00d1ff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.project-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.project {
+    width: 90%;
+    max-width: 350px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #0a0f2c;
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 255, 0, 0.4);
+}
+
+.project video {
+    width: 100%;
+    height: auto;
     border-radius: 5px;
-    margin-top: auto; /* Pushes the button to the bottom */
-    align-self: center; /* Centers the button horizontally */
+    transition: transform 0.3s ease;
 }
 
-.cta-button.project-button:hover {
-    background-color: #00cc00;
+.project video:hover {
+    transform: scale(1.1);
 }
 
-/* Responsive Adjustments */
+/* Contact Section */
+.contact {
+    padding: 80px 20px;
+    background: #0a0f2c;
+    text-align: center;
+}
+
+.contact h2 {
+    color: #00d1ff;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    margin-bottom: 20px;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact form input,
+.contact form textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    background: #0f1c3f;
+    color: #fff;
+}
+
+.contact button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact button:hover {
+    background: #0056b3;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #001a44;
+    color: #fff;
+}
+
+footer a {
+    color: #00d1ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Video Popup */
+.video-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    background: #0f1c3f;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 6px 12px rgba(0, 255, 0, 0.3);
+}
+
+.video-popup video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.video-popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 90;
+    display: none;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: 1fr; /* Single-column layout for smaller screens */
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .about h2 {
+        font-size: 2rem;
+    }
+
+    .about p {
+        font-size: 1rem;
+    }
+
+    .skill-bubble {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+
+    .project {
+        width: 100%;
+    }
+
+    .cert-gallery a img {
+        width: 100%;
     }
 }
-
